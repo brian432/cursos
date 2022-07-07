@@ -1,0 +1,146 @@
+Imagenes dentro de un contenedor:
+
+<div id="div-img">
+    <img ...>
+</div>
+
+1)Creamo el css del contenedor. Le damos un tamaño en altura y en ancho
+
+#div-img{
+    width:300px;
+    heigth:300px;
+}
+
+2)Creamos el css de la imagen. Primero debemos indicar que la imagen ocupe el 100% del contenedor
+
+#div-img img{
+    width:100%;
+    heigth:100%;
+    object-fit:contain; 
+	 :cover;
+ 	 :fill;
+};
+
+contain; Mantiene la relacion de aspecto pero lo dimensiona para que entre dentro del contenedor;
+cover; Hace una especie de zoom para llenar el contenedor manteniendo la relacion de aspecto, lo que sobrepase el tamaño del contenedor se oculta
+fill; llena el contenedor modificando la relacion de aspecto.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Sombrear imagenes:
+
+filter:drop-shadow(0 0 5px blue); 
+
+Toma 4 argumentos. El primero; la distancia de la sombra en el eje x. El segundo; la distancia de la sombra en el eje y. El tercero; el desenfoque de la sombra. El cuarto; el color de la sombra.
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+Background imagen:
+
+Para utilizar una imagen de fondo utilizamos la siguiente propiedad
+
+background-image: url(...);
+-------------
+
+Establecer un color de respaldo:
+
+background-image: url(...) blue; si la imagen no se carga pondremos un color de respaldo.
+
+-------------
+Agregarle un degradado a la imagen de fondo.
+
+background-image:linear.gradient(....), url(..);
+
+-------------
+
+background-size:contain; 
+	          :cover; 
+
+contain; Escala la imagen al mayor tamaño posible sin recortarla ni estirarla. Ocupara el ancho del contedor, si no cubre el alto, la repetira debajo y viceversa.
+
+cover; Escala la imagen al mayor tamaño posible sin estirarla, si la imagen no alcanza a llenar el contenedor.
+
+
+-------------
+
+background-attachment: fixed;
+		    : scroll;	
+
+fixed; La imagen de fondo estará fija en la pantalla y no se moverá con el bloque contenedor. Si la utilizamos en en body, cuando scroleemos la imagen quedara fija en la pantalla.
+
+scroll; La imagen de fondo se moverá dentro de la pantalla junto al bloque que la contiene.
+
+
+--------------
+
+Si queremos utilizar la background-img como fondo del body fijo. Debemos utilizar la siguiente configuracion.
+
+body{
+    background-image: url(...);
+    background-size:cover;  
+    background-attachment: fixed;
+    background-position: center;	
+};
+
+ir probando dependiendo del tamaño de la imagen y del body
+
+-------------
+
+Si vamos a utilizar esta propiedad como fondo de un contenedor, debemos utilizar la siguiente configuracion.
+
+div{
+    background-image: url(...);
+    background-size:cover;
+    background-position: center;
+};
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+Recomendaciones:
+
+1) Es un buen ejercicio poner las imagenes dentro de un div para que luego controlemos el tamaño de la imagen a partir del div. Luego de definir el tamaño del div contenedor de la imagen, tendremos que darle el siguiente codigo a la image. 
+
+#contenedor img{
+    width:100%;
+    heigth:auto;
+    display:block;
+}
+
+-----------------------------------
+
+Para las imagenes de fondo del body, en vez de utilizar un bakgroun-image podemos crear un div y dentro poner las imagenes, luego sacamos ese div del doom utilizando position obasolute para que no interfiera en el diseño de la pagina y solo aparezcan superpuestas. luego mediante z-index las colocamos de fondo.
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Colocar una imagen de fondo con bakground-imagen y que se adapte al tamaño responsive de la pantalla
+
+
+background-size: cover;
+background-position: center;
+
+Y darle un tamaño higth fijo al contenedor
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Cambiar de color una imagen cuando pasamos el mouse por encima
+
+filter: hue-rotate(60deg) brightness(500%);
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Cuando tenemos solicitamos imagenes a una api, estas imagenes pueden que no sean todas del mismo tamaño, para solucionar este problema y que los divs que creamos sean todos del mismo tamaño hacemos lo siguiente.
+
+
+img{
+	width:100%;
+	heigth:400px; //si todas las imagenes tuviesen el mismo tamaño aqui pondriamos "heigth:auto"
+	objet-fit:cover; // aqui esta el truco, es como background-size: cover;
+}
+
+
+
+

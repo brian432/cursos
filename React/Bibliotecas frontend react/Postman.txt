@@ -1,0 +1,23 @@
+1)Dentro del post request introducimos el end point de la base de datos que va a almacenar los datos ingresados en el formulario. Una vez enviado, chequemos en el navegador, click derecho, inspeccionar y vamos a la ventana red. Al ostado de la seccion "Nombre" hacemos click en la ventana "Vista previa" y ahi veremos el estado de nuestro post request, si a sido creado y enviado, nos aparecera algo parecido a esto
+
+{status_code: 201, message: "CREATED"}
+
+2)Como siguiente paso, abrimos "postman" 
+
+a)Creamos un "add request" y en el select donde dice "GET" lo cambiamos a "POST"
+
+b)Ingresamos el End point que almacena los ususarios registrados, hacemos click en la pestaña "body" y luego en el radiobutton "raw"
+
+c)A la misma altura de el radiobutton "raw" mas precisamente al final a la derecha, hay un select, cambiamos ese select al valor "JSON"
+
+d)Dentro de raw escribimos una solicitud, en la mayoria de los casos sera ingresar un usuario y password que hayan sido registrados ejemplo:
+
+	{
+   	       "userName":"poihyyy",
+    	       "password":"123456"
+	}
+
+Si ese ususario fue creado correctamente, postman nos devolvera un objeto json con los datos del usuario registrado **Siempre chequear que este bien el end point***
+
+
+

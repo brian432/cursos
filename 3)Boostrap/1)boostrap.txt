@@ -1,0 +1,108 @@
+clases:
+
+Responsive:
+
+container-fluid= encerramos todas las etiquetas (exeptuando las del head) dentro de un div con esta clase nuestro sitio web sera receptivo
+
+img-responsive= para que las imagenes sean responsive y se adapten al ancho de la pagina o de el contenedor en el que este incluida
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Texto:
+
+text-center= centra el texto dentro del contenedor.
+
+text-primary= texto de color celeste
+
+text-danger=texto color rojo
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Botones:
+
+btn=Para agregar clases de botones primero debemos agregar esta clase al boton y luego vienen las demas.
+
+btn-default=Boton clasico de color blanco. El tamaño del boton depende del tamaño del texto.
+
+btn-block=esta clase cambia el tamaño del boton a la anchura del contenedor
+
+btn-primary= color azul
+
+btn-info= color celeste
+
+btn-danger= color rojo
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Cuadriculas:
+
+Para crear una cuadricula con boostrap primero debemos crear un div con la clases row
+esto creara una fila con 12 columnas. <div class="row">. 
+
+Luego debemos encerrar cada elemento que este dentro de la fila en un div con las siguiente clase:
+
+col-md-* o col-xs-*= col significa "columnas" md significa el tamaño con respecto a las pantallas y * hace referencia al numero de columnas que va a ocupar el elemento (recordemos que son 12 columnas por fila, es decir que si tenemos 3 elemento dentro de la cuadricula y queremos que los 3 sean del mismo tamaño, utilizariamos col-md-4 en cada elemento)
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Font Awesome:
+
+Para agregar los iconos primero debemos agregar esta etiqueta en el head 
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+----------------------
+
+Los iconos los agregaremos dentro de etiquetas <i> o etiquetas <span> se utiliza mayormente la <i> que son etiquetas en linea. Buscar las clases en boostrap para agregar los iconos, pondremos solo un ejemplo:
+
+<button class="btn btn-block btn-primary"><i class="fas fa-thumbs-up"></i> Like</button>
+    </div>
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+Formularios:
+
+form-control= Todos los elementos textuales <input>, <textarea>y <select>con la clase .form-controltienen un ancho del 100% del contenedor
+
+--------------------------------------
+Botones de radio de estilo receptivo
+
+¡También puedes usar las col-xs-*clases de Bootstrap en form elementos!
+
+Ejemplo, tenemos 2 botones de radio y queremos que esten ubicados en fila dentro del formulario y ocupen el mismo tamaño y sean receptivos.
+
+<form>
+    <label><input type="radio">hola</label>
+    <label><input type="radio">chau</label>
+</form>
+
+Para hacerlo con boostrap debemos encerrar los dos radiobutons en un una cuadricula de una fila y 12 columnas como ya aprendimos (<div class="row"></div>) luego cada radiobuton debemos encerrarlo dentro de su div correspondiente con la clase col-md-6 o col-xs-6 segun el tamaño que queramos.
+
+<form>
+    <div class="row">
+        <div class="col-md-6">
+	<label><input type="radio">hola</label>
+        </div>
+        <div class="col-md-6">
+	<label><input type="radio">chau</label>
+        </div>
+    </div>	
+</form>
+	
+--------------------------------
+
+form-control= Todos los elementos textuales <input> (LOS INPUT QUE SEAN TYPE="TEXT"), <textarea>y <select>con la clase .form-control tienen un ancho del 100%. 
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Efectos de divs (bordeado de los contenedores)
+
+well= le da un efecto de profundidad a un div.
+
+
+
+
+
+
+
+
+  

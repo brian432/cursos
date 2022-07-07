@@ -1,0 +1,69 @@
+La mayoría de las aplicaciones React tendrán sus archivos “empaquetados” o en un bundle. Es esa carpeta que se crea al introducir el comando "npm build" o "yarn build", Este comando crea una carpeta y fusiona todos los componentes creados estaticamente (importacion estatica), y todo el codigo js en un solo archivo. Esto se hace cuando vamos a deployar la aplicacion a un servidor en internet. El servidor renderiza el archivo dentro de esa carpeta y lo muestra en la pantalla. 
+
+A medida que nuestra aplicacion crece, ese archivo se va haciendo mas grande, mas pesado, y por ende tardara mas en renderizarse y eso realentizara la velocidad de carga de la aplicacion.
+
+Para solucionar esto, existe un concepto llamado "Division de codigo". Esto quiere decir que vamos a crear mas carpetas "build" que van a dividir el codigo y por ende esos archivos pesaran menos y tardaran menos en renderizarse.
+
+En resumen, habra una carpeta que almacene la mayoria del codigo necesario, y otras carpetas que almacenaran codigo que solo se cargaran al producirse una condicion. 
+
+Ejemplo:
+
+Tenemos un componente para manejar los errores de carga de otros componentes. No necesitamos que ese componente vaya a la carpeta "build" principal, porque no va a ser utilizado salvo que ocurra un error, ahi es donde entra "lazy y suspense" para resolver esto y guardar ese componente en otra carpeta "build" que sera renderiza solo cuando se la necesite. A este proceso se le llama "importacion dinamica"
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Lazy
+
+lazy() sirve para importar dinamicamente a los componentes dentro de React:
+
+Importacion estatica = import { Error404 } from './componentes/Views/Error404/Error404'
+importacion dinamica= const Error404=lazy(()=>import('./componentes/Views/Error404/Error404'))
+
+1)Los componentes que vayamos a importar con lazy() tienen que ser exportados por default, es decir que los componentes como el siguiente no pueden usarse con lazy():
+
+export const Error404=()=>... //No funciona
+-------
+const Error404 = () => ... 
+
+export default Error404 //funciona
+-------
+export default function Error(){return ....}  //Funciona
+
+2)Importamos lazy para poder utilizarlo: import { lazy } from 'react'
+
+3)Ahora nos toca importar el componente de la siguiente manera.
+
+const Error404=lazy(()=>import('./componentes/Views/Error404/Error404'))
+
+-----------------------
+
+Suspense
+
+Luego de importar el componente de forma dinamica con lazy() debemos agregarlo a la aplicacion.
+
+Renderizar un componente con lazy() lleva un tiempo, en ese tiempo que pasa mientras se renderiza el componente vamos a querer mostrarle al usuario una imagen de carga, para hacer esto vamos a utilizar el metodo/funcion "Suspense"
+
+1)importamos Suspense: import { lazy, Suspense } from 'react'
+
+2)Envolvemos el componente importado con lazy() entre 2 etiquetas Suspense:
+
+	<Suspense>
+		<Error404 />
+	</Suspense>
+3)Dentro de la etiqueta Suspense agregamos la propiedad fallback con lo que queremos que muestre la aplicacion mientras se renderiza el componente lazy()
+
+	<Suspense fallback={<>...</>}> 
+		<Error404 />
+	</Suspense>
+
+***Si el componente renderizado con lazy() es pequeño, es decir el archivo no pesa mucho, es probable que lo que pasamos como valor de "fallback" no sea mostrado pero si es necesario usarlo***
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Cuando utilizar lazy()?
+
+La utilización o no de esta herramienta dependerá de la estrategia que queramos
+implementar, aunque una buena opción es utilizarlo en aquellos componentes
+que son muy grandes o también los que no solemos utilizar mucho,
+indistintamente de su tamaño.

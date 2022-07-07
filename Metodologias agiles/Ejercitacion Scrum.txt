@@ -1,0 +1,200 @@
+Metodologias agiles:
+
+1)Que son?
+Las metodologías ágiles son aquellas que permiten adaptar la forma de trabajo a las condiciones del proyecto, consiguiendo flexibilidad e inmediatez en la respuesta para amoldar el proyecto y su desarrollo a las circunstancias específicas del entorno.
+
+2)Para que sirven?
+Reducir los costes e incrementar la productividad, Mayor control y capacidad de predicción, Uso de métricas más relevantes
+
+3)valores y principios del manifiesto ágil
+
+	a)Enfoque de trabajo es centrado en las necesidades del cliente
+
+	b)El cambio esta permitido y se aprovecha por mas que llegue tarde al desarrollo
+
+	c)Las entregas de sofware productivo se hacen con frecuencia
+
+	d)El equipo comercial y desarrollo trabajan en conjunto todos los dias durante el todo proyecto
+
+	e)Los proyectos se construyen con personas que tienen motivacion. Estas deben contar con entornos de trabajo y el apoyo necesario y se debe confiar en que haran bien el trabajo.
+
+	f)Para llevar informacion a un equipo de desarrollo y hacerla circular dentro de este, la conversacion cara a cara es la forma mas eficiente y efectiva de hacerlo
+
+	g)La primordial medida de progreso es el software
+
+	h)El desarrollo debe ser sostenido y a un ritmo constante
+
+	i)Atender en todo momento el buen diseño y la exelencia tecnica mejora la agilidad
+
+	j)La simplicidad es escencial
+
+	k)Los mejores diseños, arquitecturas y requisitos son el resultado de equipos autoorganizados
+	
+	l)En intervalos que se den de manera regular, el equipo debe reflexionar y buscar la manera de ser mas efectivo y ajustar su comportamiento a esto.
+
+---------------------
+
+4)Marco de trabajo XP Fases:
+
+	a)Entender lo que el cliente necesita > Fase de Exploración
+	b)Estimar el esfuerzo > Fase de Planificación
+	c)Crear la solución > Fase de Iteraciones
+	d)Entregar el producto final al cliente > Fase de puesta en producción
+
+Lo que caracteriza a XP, al igual que al resto de métodos Agiles es un ciclo de vida dinámico. ¿Cómo lo logra XP?metodología xp Ciclo XP Mediante ciclos de desarrollo cortos (llamados iteraciones), al fin de los cuales se generan unos entregables funcionales.
+
+---------------------
+
+5)marco de trabajo TDD:
+
+	a) Es un proceso de desarrollo que consiste en codificar pruebas, desarrollar y refactorizar de forma continua el código construido. La idea principal de esta metodología es realizar de forma inicial las pruebas unitarias para el código que tenemos que implementar.
+
+------------------------------------------
+
+Scrum
+
+
+6) Ceremonias scrum y el propósito de cada una de ellas:
+
+Ceremonias del Sprint:
+
+Los sprint son bloques de tiempo fijo, que van de 1 a 4 semanas. Duranto los que se crea un incremento del producto utilizable. Los sprint estan compuestos por 4 ceremonias Scrum
+
+	a)Sprint Plannig: Planificar el trabajo de ese sprint
+
+	b)Dailies: Reuniones diarias, de no mas de 15' en las que se comparten avances y objetivos para las proximas 24hs.
+
+	c)Sprint review:Se muestran avances del sprint a las partes interesadas. De esta forma se pueden hacer ajustes a los largo del sprint
+
+	d)Sprint retro: Se mira hacia atras para identificar elementos que podrian mejorarse y sostener aquello que funciona bien. >Esta reunion no se enfoca en aspectos tecnicos sino mas bien en el funcionamiento del equipo
+
+-----------------------
+7)Rol de cada integrante de un equipo que trabaja bajo el marco scrum:
+
+1)Product Owner: Representa el negocio, a los clientes, a los stateolders y a los usuarios finales. 
+   a)Tiene su foco en maximizar el valor del producto y del trabajo del equipo de desarrollo
+   b)Es responsable de la gestion y administracion del product backlog
+
+2)Scrum master:Se encarga de asegurar que el marco scrum sea entendido y adoptadop por el equipo
+
+   a)Ayuda a las personas externas al equipo scruma entender que interacciones con el equipo scrum pueden ser de ayuda y cuales no.
+
+
+3)Equipo de desarrollo: El equipo de desarrollo tiene 3 responsabilidades fundamentales e indelegables.
+
+    a)Proveer las estimaciones de cuanto esfuerzo sera requerido para cada una de las caracteristicas del prodcuto
+
+    b)Comprometerse al comienzo de cada sprint a construir un determinado incremento del producto para cumplir con el objetivo buscado
+
+    c)Entregar el producto terminado al finalizar cada sprint
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+8)sprint, story points y estimaciones:
+
+User stories: Las historias de usuario son las especificaciones funcionales que se detectan por medio de la interaccion entre el usuario y el equipo de desarrollo
+
+Las usertories deben responder a las reglas de las 3c.
+
+1)Card: Toda userstori se debe resumir en una carta o targeta
+2)Conversada: Toda userstori debe ser conversada con el product owner
+3)Confirmacion: y debe tener la confirmacion de que todo el equipo comprendio esa tarjeta.
+
+Las historias de usuario suelen escribirse con un formato muy sencillo.
+
+1)Que funcionalidad quiere el usuario, como quiere que se vea y para que quiere esa funcionalidad.
+----------
+
+Otra forma de redactar las userStories es por medio de la regla INVEST, esto significa que la userstorie debe ser:
+
+1)Independiente: Deben ser independientes entre si
+
+2)Negociables: los detalles deben poder ser conversables con los state holders
+
+3)Valiosa: deben aportar un valor al usuario final
+
+4)Estimables: deben poder ser estimadas con la precision suficiente para ayudar a la clientela a priorizar y planificar su implementacion
+
+5)Pequeña: deben ser lo suficientemente pequeñas para que permitan ser estimadas por el equipo de desarrollo
+
+6)Testeable: deben poder ser probadas por el usuario final
+
+--------------------------------
+
+Estimaciones en Scrum:
+
+La intecion de la estimacion es definir el nivel de dificultad que tiene un item. Se busca llegar a un punto donde se pueda definir, en terminos relativos, la dificultad de realizar una tarea/historia/feature.
+
+
+Tecnicas de estimacion: 
+
+Para estimar existen diversas tecnicas. Entre las mas conocidas estan:
+
+1)Planning poker: Se utiliza un mazo de cartas, se expone el proyecto al "equipo scrum" y luego los votantes eligen una carta con la que concideren referenciar la dificultad o tiempo que les va a tomar hacer esa tarea. Las muestran al mismo tiempo y luego se utiliza la mayoria de coincidencia para estimar la tarea en cuestion. Cuando no hay mayoria de coincidencias se abre el debate.
+
+   Beneficios del Plannig poker:
+
+   a)Mayor participacion
+   b)Menos detalle sesgado
+   c)Menor posibilidad de influenciar a los demas
+
+El product owner siempre va a querer terminar el proyecto en el menor tiempo posible y los desarrolladores lo contrario por eso esta tecnica es fundamental.
+
+
+2)Sistema de cubos/Mapeo por afinidad:
+
+3)T-shirt sizing:
+-----------------------------------------------------------------------------------------------------------------------------
+
+9)Conocer cómo funcionan las ceremonias de refinamiento.
+
+Refinamiento del backlog:
+
+Su objetivo es ayudar al product owner a mejorar o refinar los items del backlog. Es una reunion que dura 2 hs aproximadamente. Cuenta con la participacion del Product owner, el Scrum Master y el equipo de desarrollo.
+
+En esta reunion se itera sobre cada item, empezando por el mas prioritario, y el objetivo es empezar a refinarlos.
+
+Epica: dentro del refinamiento del backlog se hace una estimacion de esfuerzo, si uno de los items es muy grande se debe descomponer en items mas pequeños. Estos pequeños items, son llamados userstories.
+
+------------
+
+10)Herramientas para dinámicas scrum
+
+	a)T-shirt sizing:
+	b)Sistema de cubos/Mapeo por afinidad:
+	c)Planning poker:
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+Kanvan
+
+11)Conocer el funcionamiento de un tablero Kanban.
+
+Beneficios de Kanvan:
+
+	a)Visualizacion: Tener un tablero colaborativo nos permite ver el estado de cada una de las tareas. Nos da transparencia en esa informacion que eso incrementa la confianza entre las personas del equipo
+
+	b)Seguimiento: Podemos ver cuanto demora cada una de las tareas en completarse y cuales son las que generan un embudo y no nos permiten avanzar.
+
+	c)Flexibilidad: Ante la visualizacion total de las tareas y los responsables, ante algun pedido del cliente, tenemos la flexibilidad de reacomodar las prioridades.
+
+	d)Mejora continua.
+
+Ejemplo de tablero de canvan.
+
+Pendiente|  En Proceso| Hecho
+
+En cada una de esas columnas vamos a ubicar las tareas pendiente, en proceso y las terminadas
+
+*Las tarjetas en proceso no pueden volver a pendiente
+
+
+3 reglas basicas de Kanvan:
+
+1)Visualizar el trabajo
+2)Medir el tiempo que necesitamos para completar cada tarea
+3)Limitar el WIP (work in progress)
+
+---------------------------------------------------
+
+12)

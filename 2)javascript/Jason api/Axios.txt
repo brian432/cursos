@@ -1,0 +1,42 @@
+Axios es una libreria, para poder utilizarla debemos integrarla al codigo html como hariamos con boostrap. Solo es necesaria cuando tengamos una pagina que necesite enviar (post) y pedir (get) muchos datos a la vez, Sino seguir usando fetch()
+
+Para poder utilizar axios debemos buscar "github axios" en google o ir a la pagina(https://github.com/axios/axios) y escrolear hasta encontrar "Using jsDelivr CDN:". Luego copiamos el codigo html y lo pegamos antes del <script></script> que utilizamos para html.
+
+
+1)La principal diferencia entre fetch() y axios es que axios no necesita serializarse para enviar un archivo o deserializarse.
+
+2)Viene configurado por defecto con la peticion GET
+
+3)La sintaxis es la siguiente Nos ahorrariamos esta linea de codigo que va en fetch() ".then(response => response.json()) "
+
+axios(url)
+	.then(response=>{
+		console.log(res)
+	})
+
+4) Para utilzar con "POST" la sintaxis es la siguiente.
+
+axios.post(url, objetoJson)
+	.then(response=>{
+		console.log(res)
+	})
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+axios con asyn y await:
+
+La sintaxis es casi la misma que con fetch() lo que no ahorramos es la linea de codigo en la que desencapsulamos la promesa.
+
+
+const boton=document.getElementById("boton");
+
+const json = async ()=>{
+    let peticion= await axios("data.json");
+    console.log(peticion.data);
+};
+
+boton.addEventListener("click", json);
+
+
+1)Cuando hacemos la peticion con axios, axios nos devuelve la informacion ya transformada en un objeto json.
+2)Para acceder a ese objeto json, solo debemos agregar ".data"

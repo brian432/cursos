@@ -1,0 +1,21 @@
+POST:
+
+fetch() por defecto viene configurado con una peticion "GET" por eso no se la agrega en los parametros junto con la direccion del archivo solicitado. En el caso de "POST" y demas peticiones, debemos agregarselas luego de la direccion del archivo json solicitado. Para hacer esto, debemos pasarle a fetch() 2 parametros:
+
+1)La direccion a la que vamos a enviar los datos.
+2)un objeto que contiene 3 propiedades
+Propiedad 1= method:"POST" (method contiene el la solicitud que estamos haciendo)
+Propiedad 2=body:contiene el objeto json con los datos que estamos enviando
+Propiedad 3=headers: contiene un objeto que indica el tipo de contenido que estamos enviando.
+
+
+const JsonEnviar={"nombre": "Brian", "apellido":"Cabrera", "edad": 28};
+
+
+fetch(URL, {
+	method: "POST", 
+	body: JSON.stringfy(jsonEnviar),  
+	headers: {
+		"Content-type": "application/json"
+	}
+})

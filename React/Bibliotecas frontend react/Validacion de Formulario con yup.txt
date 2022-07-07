@@ -1,0 +1,28 @@
+yup:
+
+1)Instalacion: yarn add yup
+
+2)importacion: import * as Yup from 'yup'
+
+---------------------
+
+Luego de instalar yup e importarlo, creamos la siguiente constante en la que vamos a ir haciendo las validaciones
+
+1)const validationSchema=Yup.object().shape({
+		....
+	})
+
+2)Dentro de shape({}) vamos a colocar todos los valores de los campos de nuestro formulario
+
+	const validationShema=Yup.object().shape({
+		firstName:Yup.string().min(4,"ingrese mas caracteres").required(),
+		lastName:Yup.string().min(4,"ingrese mas caracteres").required(),
+		...
+	})
+Los tipos de valores de campos que no podemos encontrar son:
+	
+	a)Yup.string() = <input type="text"/>, <textarea>, <select>
+	b)Yup.number() = <input type="number"/>
+	c)Yup.string().email() = <input type="email"/>
+  	d)Yup.string().required("mensaje de error")= Para los campos del formulario requeridos		
+	

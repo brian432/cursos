@@ -1,0 +1,256 @@
+Variables:
+
+Una variable "let" declarada dentro de un bloque no puede ser accedida desde fuera. Es decir que puede haber una variable global con el mismo nombre que esta no sera reasignada.
+
+
+let i=68;
+
+if(i>50){
+    let i=10;
+    document.write(i);
+};
+
+document.write(i);
+
+
+En la pantalla aparecera 10 y tambien 68.
+
+Si en vez de utilizar "let" utilizacemos "var" el resultado seria diferente, la variable dentro del bloque sobreescribiria la variable global.
+
+Utilizando "let" nos aseguramos que una variable global no pueda volver a ser declarada. Pero si puede ser reasignada de la siguiente forma.
+
+let i=10;
+i=20;
+
+document.write(i); en la pantalla aparecera 20;
+
+-----------------------------------------------------
+
+Variable const:
+
+La variable "const" es igual a la variable "let"la diferencia es que no se puede reasignar como en el ejemplo anterior. 
+
+const i=10;
+i=20;
+document.write(i); en la pantalla aparecera un error.
+
+La variable const se utiliza cuando queremos que una variable no cambie nunca.
+
+Cuando utilizamos variables const debemos declararlas en mayusculas. ejemplo:
+
+const ANIBAL="ANIBAL";
+
+En el caso de que la variable "const" almacene un objeto, funcion, lista si se puede cambiar de la siguiente forma.
+
+const OBJ=[2,3,4];
+OBJ[0]=1;
+
+el objeto const en este caso si se puede mutar, el objeto quedaria de la siguiente forma. OBJ=[1,3,4]; 
+
+Para que esto no susceda y la variable const no pueda ser cambiada de ninguna manera vamos a utilizar la siguiente funcion Object.freeze(obj); despues de declarar la variable, de esta forma el objeto no podra ser mutado de ninguna manera.
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Funciones de flecha:
+
+Si una función flecha tiene un solo parámetro, los paréntesis que encierran el parámetro pueden ser omitidos.
+-------------------------------------------
+Parametros por defecto:
+
+En el caso de que llamemos a una funcion que pide parametros pero nosotros no se lo pasamo, ES6 permite agregarle a la funcion un valor al parametro en caso de que al llamarla no se lo pasemos.
+
+const increment = (number, value=1) => number + value;
+
+increment(12); La funcion retornara 13, porque le pasamos solo el primer parametro, si le hubiesemos pasados los 2 parametros, el valor de value seria cancelado, solo esta ahhi por las dudas de que no se lo pasemos.
+
+-------------------------------------------
+Parametros ...args
+
+En el caso de no querer especificar cuantos parametros necesitamos en la funcion, podemos utilizar el parametro "...args". Los argumentos que le pasemos a la funcion se almacenan en un arreglo al que se puede acceder más tarde desde dentro de la función.
+
+const sum = (...args) => {}
+
+-------------------------------------------
+
+Operador de propagación:
+
+El operador de propagacion son los 3 puntos (...arr) antes de referencia un arreglo u otras expresiones.
+
+const arr = [6, 89, 3, 45];
+const maximus = Math.max(...arr);  En este ejemplo, si no pusiesemos los tres puntos, daria error. Con los 3 puntos, maximus adquiere el valor de 89.
+
+const spreaded = ...arr; este codigo tampoco funcionara. spreaded no almacenara el arreglo desempacado, para que este codigo funcione, debemos encerrar el arrglo con los 3 puntos dentro de un [ ]
+
+
+*para dejarlo mas claro, lo que hace "..." es lo siguiente.
+
+const arr = [6, 89, 3, 45];
+...arr= 6,89,3,45; como este codigo no es valido, debemos encerrarlo siempre dentro de [] o () en el caso de que sea un parametro de una funcion.	
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Sintaxis de desestructuración para extraer valores de objetos:
+
+De la forma comun, para acceder a los valores de un objeto, tendriamos que hacerlo de la siguiente manera:
+
+const user = { name: 'John Doe', age: 34 }; objeto con propiedades y valores.
+
+const name = user.name; Le asignamos el valor de la propiedad name a la variable name
+const age = user.age;Le asignamos el valor de la propiedad age a la variable age.
+
+En ES6 podemos hacer esto de una manera mas sencilla.
+
+const user = { name: 'John Doe', age: 34 };
+
+const { name, age } = user; Usando llaves creamos dos variables con el mismo nombre de las propiedades del objeto, y luego las inicializamos con el nombre del objeto. Ahora name='Jhon Doe' y age=34.
+
+-----------------------------------------------------------
+
+La desestructuración te permite asignar un nuevo nombre de variable al extraer valores. Puedes hacer esto al poner el nuevo nombre después de dos puntos al asignar el valor. 
+
+
+const user = { name: 'John Doe', age: 34 };
+
+const { name: userName, age: userAge } = user;
+-----------------------------------------------------------
+
+Sintaxis de desestructuración para asignar variables desde objetos anidados:
+
+const user = {
+  johnDoe: { 
+    age: 34,
+    email: 'johnDoe@freeCodeCamp.com'
+  }
+};
+
+
+Tenemos un objeto dentro de un objeto, para acceder a este hacemos lo siguiente.
+
+const { johnDoe: { age, email }} = user;  
+
+-------------------------------------------------
+
+Sintaxis de desestructuracion para pasar objetos como parametro de una funcion.
+
+**Forma de hacerlo antes de ES6
+
+Lo que vamos a hacer aqui es pasarle a la funcion profileUpdate el objeto "profileData" para luego actualizar sus propiedades dentro. 
+
+const profileData = {  /**objeto
+  name:"Brian",
+  age:28,
+  nationality:"Argentina",
+  location:"Colón"
+};
+
+
+const profileUpdate = (profileData) => {                                   /** funcion
+  const { name, age, nationality, location } = profileData;        /**En esta linea creamos lasvariables/propiedad 					            /**como aprendimos anteriormente
+
+}
+
+profileUpdate(profileData); /**Llamada a la funcion con el objeto como parametro.
+
+
+**Forma de hacerlo con ES6
+
+Con ES6 podemos hacer lo mismo pero con menos codigo.
+
+const profileUpdate = ({ name, age, nationality, location }) => {  /**
+	...
+};
+
+profileUpdate(profileData);
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Desestructuración para asignar variables desde arreglos
+
+const [a, b] = [1, 2, 3, 4, 5, 6];
+console.log(a, b);
+La consola mostrará los valores de a y b como 1, 2.
+
+const [a, b,,, c] = [1, 2, 3, 4, 5, 6];
+console.log(a, b, c);
+La consola mostrará los valores de a, b, y c como 1, 2, 5.
+
+
+-------------------------------------------
+
+En el siguiente caso, a=1, b=2 y c=3. 
+
+const [a, b, c] = [1, 2, 3, 4, 5, 6];
+
+En el caso de querer almacenar los elementos restantes en un arreglo, podemos hacer lo siguiente.
+
+const[a, b, c, ...arr]=[1, 2, 3, 4, 5, 6]; a=1, b=2, c=3 y arr=[4,5,6];
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Funciones ES6
+
+Object.freeze(obj); Se utiliza para que no se pueda cambiar el objeto de ninguna manera, queda bloqueado
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Crea cadenas usando plantillas literales:
+
+Se utiliza "${variable}" para concatenar cadenas. Un ejemplo de su uso es el siguiente.
+
+const uno="hola como estas";
+const dos=45;
+
+const tres=`${uno}, mi edad es  ${dos}`; *Se utilizan comillas invertidas ``
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Escribe funciones breves y declarativas con ES6:
+
+Cuando tenemos funciones dentro de un objeto, podemos precindir de la palabra function, primero un ejemplo de como se declaraba una funcion dentro de un objeto antes de ES6.
+
+const person = {
+  name: "Taylor",
+  sayHello: function() {
+    return `Hello! My name is ${this.name}.`;
+  }
+};
+
+Con ES6, puedes eliminar la palabra clave function y los dos puntos al definir funciones en objetos. Aquí hay un ejemplo de esta sintaxis:
+
+const person = {
+  name: "Taylor",
+  sayHello() {
+    return `Hello! My name is ${this.name}.`;
+  }
+};
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+<script type="module" src="filename.js"></script>
+
+Un script que utilice este module ahora podrá utilizar las caraterísticas import y export.
+
+Si creamos una funcion que luego vamos a utilizar en muchos archivos diferentes, lo que podemos hacer, en vez de copiar y pegar la misma funcion en todos los archivos, es exportar esa funcion mediante "export", de la siguiente manera.
+
+const add = (x, y) => {
+  return x + y;
+}
+
+export { add };
+
+La funcion add ya podra ser referenciada en otros archivos.
+
+-----------------------------------------------
+Como referenciamos esa funcion en otros archivos? mediante "import" de la siguiente forma.
+
+import { add } from 'direccion del archivo';
+
+-----------------------------------------------
+
+En el caso de querer importar muchas funciones de un solo archivo, lo podemos hacer de la siguiente manera.
+
+import * as nombreDeVariableQueQueramos from "direccion del archivo";
+
+Y luego referenciamos la funcion que queramos utilizar de la siguiente forma:
+
+variable.add(2,3);
+variable.subtract(5,3);
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+

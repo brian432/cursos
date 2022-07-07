@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**Variables**/
+        let hola="Explica en que situaciones se utiliza la variables 'let'";//let se utiliza para variable que solo vamos a utilizar dentro de un bloque, si una variable esta declarada como let dentro de un bloque, no puede ser accedida en niveles mas altos que ese bloque, si puede ser accedida por otras funciones dentro de esa misma funcion puede ser modificada. Si una variable let tiene el mismo nombre que una variable fuera de esa funcion, la variable let dentro de la funcion tiene prioridad por sobre la variable global.
+        const HOLA="Explica en que situaciones se utiliza la variables 'const'";//const es parecida a let pero no puede modificada.
+        var hola="Explica en que situaciones se utiliza la variables 'var'";//
+        
+        //---------------------------------------------------------------------------        
+        
+        /**Funciones de flecha**/
+        
+        
+        //como se declara una funcion de flecha.
+        
+        const flecha=()={}
+    
+
+        //Como se asignan los parametros por defecto y en que situaciones se utilizan.
+
+        const flecha=(parametro=1){}
+        //los parametros por defecto se utilizan cuando al llamar a una funcion no le pasamosun parametro, dentro de el return de la funcion el parametro sera pedido, al no pasarlo en la llamara este parametro tomara el valor que le dimos popr defecto, si se lo pasamos el valor por defecto sera omitido.
+        
+        
+        //----------------------------------------------------------------------------
+        /**Parametro rest en una funcion. Para que sirve**/
+         
+        //cuando no sabemos la cantidad de parametros que van a ser pasados a la funcion al ser llamada, utilizamos el parametro rest, esto lo que hara sera que almacena los parametros pasados a la funcion en un array
+        
+        
+        //-----------------------------------------------------------------------------
+
+        /**Sintaxis de desestructuración para extraer valores de objetos**/
+        
+        
+        //asignarle nuevos nombres a las variables al extraer valores.
+     
+        const objeto1={
+            uno:1,
+            dos:2,
+            tres:3,
+            cuatro:4
+        }
+
+        const {uno:numero1, dos:numero2}=objeto1;
+
+        //Sintaxis de desestructuración para asignar variables desde objetos anidados
+
+        const objeto1={
+            hola:{saludos1:1,saludos2:2},
+        }
+
+        const {hola:{saludos1,saludos2}}=objeto1;
+      
+        //Sintaxis de desestructuracion para pasar objetos como parametro de una funcion.
+        
+
+        //------------------------------------------------------------------------------
+
+        /**Desestructuración para asignar variables desde arreglos**/
+        
+
+        //------------------------------------------------------------------------------
+
+        /*Funciones*/
+        push()   //agrega un elemento al final de un arreglo    
+        unshift() //agrega un elemento al principio de un arrglo
+        pop() //elimina el ultimo elemento de un arreglo
+        shift()//elimina el primer elemento de un arreglo
+        splice() //modifica el arreglo, el primer parametro indica el indice desde el cual se van a comenzar a eliminar los elementos, el segundo parametro indica la cantidad de elementos que se van a eliminar, y a partir del tercer parametro se indican los elementos que van a reeplazar a los elementos eliminados, es opcional a partir del tercer argumento
+        slice() //crea una copia del arreglo referenciado. como primer parametro le indicamos el indice a partir del cual comenzara a hacer la copia, como segundo parametro indicamos el indice donde va a terminar esa copia, sin incluir ese ultimo indice
+        split()//agarra una cadena y la convierte en una arreglo, dentro de los parametro le indicamos cual caracter quiere que se el separador, si no se lo indicamos almacenara dentro del arreglo elementos de un solo caracter.
+        replace()//reemplaza un cadena o una expresion regular con otra cadena que indicamos dentro de los parametros
+        hasOwnProperty() //verifica que una propiedad pertenezca al objeto analizado, devuelve false o true
+        Math.random() //
+        Math.floor() //
+        Math.max() //
+        Math.min() //
+        toFixed() //devuelve un numero decimal mostrando solo la cantidad de decimales que indiquemos dentro de los parametros
+        Math.PI //
+        Math.floor((Math.random() * (max - min + 1)) + min) //
+        Math.pow() //
+        parseInt() //analiza una cadena y devuelve un entero
+        propmpt() //pide una entrada al usuario
+        toUpperCase() //devuelve una cadena a mayusculas
+        toLowerCase() //devuelve una cadena a minuscuas
+        alert() // muestra una ventana de alerta
+        confirm() //muestra una ventana con dos botones, confirmar y cancelas, almacena un boleano
+        Number() //tranforma una cadena a un entero
+        //-------------------------------------------------------------------------------
+        
+        /*Palabras clave*/
+
+        //delete onjeto.propiedad
+
+        
+
+        //--------------------------------------------------------------------------------
+
+        /*Crea cadenas usando plantillas literales:*/
+       
+       
+
+        //--------------------------------------------------------------------------------
+        /*funciones breves y declarativas como valor de un objeto*/
+        const objeto={
+            fruta="manzana",
+            pelarFruta:()=>{
+                console.log(this.fruta);
+            }
+        }
+        
+        //--------------------------------------------------------------------------------
+        /*Pasos para exportar e importar funciones desde otro archivo*/
+       
+        
+
+        //para importar las funciones debemos hacer los siguiente
+        
+
+        //para importar todas las funciones de un archivo
+        
+        
+
+        //luego las referenciamos con la variable y el nombre de la funcion
+        
+      
+
+        
+        //--------------------------------------------------------------------------------
+        /**/
+        
+
+    </script>
+    <script type="module"></script>
+</body>
+
+</html>

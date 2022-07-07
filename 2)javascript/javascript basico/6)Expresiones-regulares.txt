@@ -1,0 +1,244 @@
+Metodo test():
+
+Las expresiones regulares se utilizan en lenguajes de programación para coincidir con partes de cadenas. Creas patrones para ayudarte a hacer esa coincidencia.
+
+let myString = "Hello, World!"; /*Cadena de texto
+
+let myRegex = /Hello/; /*Expresion regular "/Hello/"
+
+let result = myRegex.test(myString); /*En la variable result almacenamos true/false dependiendo de si la 			        		       /*expresion regular se encuentra dentro de la cadena.
+
+if(result){
+  document.write("hola");
+};
+
+*Para que la variable result devuelva true, la expresion regular debe esta escrita exactamente como aparece en la cadena*
+
+------------------------------------
+
+En el caso de que queramos que la expresion regular coincida con otras palabras, podemos utilizar el operador "or" con una sola barra "|":
+
+let myString = "hola, mundo!"; 
+
+let myRegex = /Hola|hola|Chau|chau/;
+
+let result = myRegex.test(myString); /*esta variable almacenara true si alguna de las expresiones regulares 			        /*se encuentra dentro de la cadena.
+
+--------------------------------------
+
+Para que en la busqueda se ignore si la palabra esta escrita en mayusculas o minusculas podemos utilizar la bandera "i" de la siguiente forma:
+
+let myRegex = /hola|chau/i; 
+
+*bandera se le llama a la letra despues de la barra inclinada /. La letra i se utiliza para ignorar si la palabra buscada esta escrita en mayusculas o minusculas.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Metodo match():
+
+Funciona parecido al metodo test() pero en este caso, match() no devuelve true, sino que devuelve un arreglo con las palabras que coincidieron, y su sintaxis es contraria a test():
+
+Utilizando el mismo ejemplo de test() pero con match():
+
+let myString = "Hello, World!"; 
+
+let myRegex = /Hello/;
+
+let result = myString.match(myRegex);
+
+*La variable result almacenara ["Hello"];
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Haz coincidir cualquier cosa con el comodín punto:
+
+En el caso de querer saber si una palabra esta dentro de una cadena pero no sabemos como se escribe o como esta escrito, podemos utilizar el comodin del punto.
+
+let myString = "Mañana va a hacer mucho frio"; 
+
+let myRegex = /ma./gi;  /*ma va a coincidir con mañana
+
+let result = myRegex.test(myString); 
+
+*result va a almacenar true
+*el punto puede ir al final como al principio, si en buscaramos hacer en vez de mañana podriamos poner
+/.cer/gi  y result seguiria dando true.
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Haz coincidir un solo carácter con múltiples posibilidades:
+
+Si quieres hacer coincidir bag, big, y bug pero no bog. Puedes crear la expresión regular /b[aiu]g/ para hacer esto. [aiu] es la clase de caracteres que solo coincidirá con los caracteres a, i, o u.
+
+----------------------------------------
+En el caso de querer coincidir muchas letras, por ejemplo desde la a hasta la h, con el ejemplo anterior tendriamos que hacer lo siguiente /[abcdefgh]/. Para ahorrarnos ese trabajo podemos utilizar el guion de la siguiente forma
+
+/[a-h]/ esta expresion regular hara lo mismo que /[abcdefgh]/
+
+*Tambien funciona con numeros*
+-----------------------------------------
+En el caso de querer almacenar todas las coincidencias repetidas, es decir que si buscamos una "a" dentro de una cadena, y queremos que todas las a que haya en la cadena y ademas las que se repiten las almacene en un arreglo, debemos hacer lo siguiente.
+
+let hola = "Mississippi";
+let chau = /s+/gi; //Si el signo + no estuviese, match almacenaria 4 elementos, es decir 4 "s" separadas
+let result = hola.match(chau);
+
+Result almasenara lo siguiente ["ss","ss"]
+
+-----------------------------------------
+
+Haz coincidir caracteres que aparecen cero o más veces:
+
+Una nueva forma de buscar coincidencias es la siguiente:
+
+let hola="gooooooooooooool";
+let chau="gervasio";
+let nosVemos=/go*/;//Analiza los caracteres juntos, si uno no esta, copia el del inicio
+
+let resultado=hola.match(nosVemos); //Resultado almacenara el siguiente arreglo ["goooooooooo"];
+let resultado2=chau.match(nosVemos);//Resultado2 almacenara el siguiente arreglo["g"];
+
+Lo que hace el * es buscar las coincidencias de todas las letras en la cadena, si alguna coincide las lamacena o devuelve true en el caso de  test()
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hasta ahora buscamos caracteres que queriamos coincidir, ahora buscaremos caracteres que no tienen que coincidir:
+
+Funciona de la misma forma que aprendimos lo anterior, pero ahora despues del primer corchete agregaremos un "^" en el caso que en nuestra cadena no queramos que coincidan con vocales o numeros podemos hacer lo siguiente.
+
+let quoteSample = "Hola como andas 34str";
+let myRegex = /[^aeiou0-9]/gi;
+let result = quoteSample.match(myRegex);
+
+result almacenara el siguiente arreglo: result=[h,l, ,c,m, ,n,d,s, ,s,t,r]. Tambien van almacenados los espacios.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+Coincidir patrones de cadena de inicio:
+
+Cuando necesitamos buscar una coincidencia al principio de una cadena utilizamos el caracter ^.
+
+let quoteSample = "como andas hola 34str";
+let myRegex = /^hola/i;
+let result = myRegex.test(quoteSample);
+
+result devolvera false
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+Coincidir patrones de cadena de final con el caracter "$"
+
+let quoteSample = "como andas hola chau";
+let myRegex = /hola$/i;
+let result = myRegex.test(quoteSample);
+
+result devolvera false
+
+*Tanto ^ como $ se utilizan con el metodo test()*
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+*En el ejemplo anterior de los caracteres negados utilizamos el signo [^] dentro de corchetes, si utilizamos el signo ^ fuera de los corchetes estaremos haciendo coincidir patrones de cadena al inicio de la cadena* 
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Clases de caracteres abreviados.
+
+Si necesitamos buscar coincidencias con letras y numeros tendriamo que utilizar el siguiente ejemplo:
+[A-Za-z0-9_] una forma mas facil de resumir esto es la clase de caracteres abreviado \w
+
+\w=Esta caracter abreviado se utiliza para buscar dentro de la cadena solo los caracteres alfanumericos, dejando de lado los no alfanumericos y los espacios. (\w=[A-Za-z0-9_])
+
+
+\W=buscar todos los caracteres que no sean alfanumericos (\W=[^A-Za-z0-9_] )	
+
+*recordemos que [^] busca los caracteres que no coincidan con los que este dentro 				del corchete (caracteres negados)*
+
+---------------------------------------------
+
+\d= Para buscar solo numeros  (\d=[0-9])
+
+\D=Para buscar lo que no son numeros (\D=[^0-9])
+
+----------------------------------------------
+
+\s=sirve para coincidir espacios en blanco, tabulaciones, saltos de linea etc (\s=[ \r\t\f\n\v])
+
+\S=sirve para coincidir los que no son espacios en blanco, tabulaciones, etc (\S=[^ \r\t\f\n\v])
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Especifica el menor y mayor número de coincidencias
+
+Recuerda que se utiliza el signo más + para buscar uno o más caracteres y el asterisco * para buscar cero o más caracteres.
+
+Puedes especificar el número inferior y superior de patrones utilizando especificadores de cantidad.
+
+let A4 = "aaaah";
+let A2 = "aah";
+let multipleA = /a{3,5}h/;
+multipleA.test(A4);
+multipleA.test(A2);
+
+El primer testeo dara true porque hay de 3 a 5 "a" en la cadena.
+El segundo testeo dara false porque hay solo 2 "a" y no llega a estar entre el rango de 3 a 5.
+
+En el caso de solo querer coincidir el numero menor de repeticiones podemos utilizar /a{3,}h/
+En el caso de solo querer coincidir con un numero de repeticiones /a{3}h/ aqui solo coincidira con la siguiente cadena "aaah"
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+Coincidir con palabras escritas de diferente forma
+
+let american = "color";
+let british = "colour";
+let rainbowRegex= /colou?r/; //esta expresion regular buscara tanto color como colour, el signo de pregunta
+rainbowRegex.test(american);  //va a la derecha del caracter que no sabemos si esta agregado en lacaden
+rainbowRegex.test(british);
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Lookahead positivo y negativo
+
+lookahead positivo:
+
+Un lookahead positivo buscará para asegurarse de que el elemento en el patrón de búsqueda este allí, pero en realidad no lo coincidirá. (?=...)
+
+------------------------------------
+
+lookahead negativo:
+
+un lookahead negativo buscará para asegurarse de que el elemento en el patrón de búsqueda no este allí.
+(?!...)
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+agrupaciones mixtas de caracteres
+
+let testStr = "Pumpkin";
+let testRegex = /P(engu|umpk)in/;
+testRegex.test(testStr); //tanto penguin como pumpkin devolveran true
+
+
+let myString = "Eleanor Roosevelt";
+let myRegex = /(franklin|eleanor).*roosevelt/ig; 
+let result = myRegex.test(myString);
+
+//la expresion regular buscara la coincidencia con el metodo or, tanto para eleanor roosevelt como para franklin roosevelt ".*" dice que si alguna de las dos coincide que siga buscando roosevelt
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+Banderas en expresiones regulares: (Se puede usar multiples banderas en una expresion regular.)
+
+i: Se utiliza para que en la busqueda de coincidencias se ignore si esta escrito en mayusculas o minusculas.
+--------------------
+g: Se utiliza para buscar mas de una sola coincidencia. Ejemplo de su uso:
+
+let myString = "Hello, Wolrd Hello Hello";
+
+let myRegex = /Hello/g;
+
+let result = myString.match(myRegex); /*result almacenara el siguiente arreglo ["Hello", "Hello", "Hello"];
+---------------------
+
+
+
+*****volver a repasar expresiones regulares.

@@ -1,0 +1,39 @@
+Los 4 pilares de las metodologías ágiles
+
+1)Individuos e interacciones sobre procesos y herramientas
+
+2)Software funcionando sobre documentación extensiva
+
+3)Colaboración con el cliente sobre negociación contractual
+
+4)Respuesta ante el cambio sobre seguir un plan
+
+-----------------------------------------------------------------------------------------------------------------------
+Manifiesto agil: El manifiesto agil esta basado en 12 principios.
+
+1)Enfoque de trabajo es centrado en las necesidades del cliente
+
+2)El cambio esta permitido y se aprovecha por mas que llegue tarde al desarrollo
+
+3)Las entregas de sofware productivo se hacen con frecuencia
+
+4)El equipo comercial y desarrollo trabajan en conjunto todos los dias durante el todo proyecto
+
+5)Los proyectos se construyen con personas que tienen motivacion. Estas deben contar con entornos de trabajo y el apoyo necesario y se debe confiar en que haran bien el trabajo.
+
+6)Para llevar informacion a un equipo de desarrollo y hacerla circular dentro de este, la conversacion cara a cara es la forma mas eficiente y efectiva de hacerlo
+
+7)La primordial medida de progreso es el software
+
+8)El desarrollo debe ser sostenido y a un ritmo constante
+
+9)Atender en todo momento el buen diseño y la exelencia tecnica mejora la agilidad
+
+10)La simplicidad es escencial
+
+11)Los mejores diseños, arquitecturas y requisitos son el resultado de equipos autoorganizados
+
+12)En intervalos que se den de manera regular, el equipo debe reflexionar y buscar la manera de ser mas efectivo y ajustar su comportamiento a esto.
+
+-----------------------------------------------------------------------------------------------------------------------
+

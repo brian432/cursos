@@ -1,0 +1,16 @@
+document.getElementByID():Devuelve el elemento con el id que este dentro de los parentesis.
+
+-------------------------------------
+querySelectorAll(): recupera una lista de elementos del documento en función del selector dado y devuelve un objeto NodeList estático. 
+
+Cualquier cambio en el DOM no afecta al contenido de la colección.
+--------------------------------
+
+document.getElementsByClassName(): devuelve una lista con los elementos que contengan la clase dentro de los parentesis.
+
+se actualiza automáticamente cuando se cambia el documento subyacente. (cuando hay cambios en el dom, se actualiza)
+
+--------------------------------
+En el caso de crear elementos dinamicos, es decir, elementos que van a actualizarse como por ejemplo crear etiqueta img con imagenes solicitadas a partir de instagram. Debemos utilizar getElementsByClassName() en caso de crear elementos estaticos, es decir, elementos que no van a cambiarse como elementos de una base de datos, o una variable podemos utilzar queryselecctorAll.
+
+

@@ -1,0 +1,18 @@
+localStorage.setItem('token', token)=
+
+Para almacenar una variable dentro del localStorage, utilizamos la funcion de arriba, como primer argumento le pasamos un string con el nombre que hace referencia a la variable que vamos a almacenar, y como segundo argumento le pasamos la variable.
+
+--------------
+
+localStorage.getItem('token')=
+
+Para acceder a un elemento guardado dentro del localStorage utilizamos la funcion .getItem, como unico argumento le pasamos el nombre con el que referenciamos a la variable almacenada.
+
+
+-------------
+
+localStorage.clear()= Sirve para limpiar el localStorage, es decir eliminar los elemento guardados dentro del mismo.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+sessionStorage: Funciona exactamente igual que localStorage, tiene sus mismas funciones, la diferencia es que se borra lo almacenado, automaticamente al cerrar el navegador. Es decir que a diferencia de localStorage, lo almacenado en esta variable, se borra al cerrar el navegador.

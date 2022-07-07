@@ -1,0 +1,18 @@
+Hay una forma mas simple de hacer eventos sin tener que llamar a todos los elementos y utilizar bucles y demas cosas. La sintaxis es mas simple
+
+Por ejemplo queremos hacer que los botones con la clase "boton" hagan halgo cuando se los clickea, la forma en que hariamos esto seria:
+
+const botones=document.querySelectorAll(".boton");
+
+botones.forEach((elemento, indice)=>{
+        elemento.addEventListener("click", (e)=>{...})
+});
+--------------
+
+Una forma mas rapida seria:
+
+window.addEventListener("click", (e)=>{
+	console.log(e.target)
+});
+
+Mediante e.target accederiamos a todos los elementos en los cuales se hizo click.

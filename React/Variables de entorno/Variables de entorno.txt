@@ -1,0 +1,19 @@
+Las variables de entorno se utilizan para almacenar informacion, por ejemplo: Dentro de una variable de entorno podemos guardar un endpoint, luego referenciarla en una peticion fetch para hacer la peticion, si nosotros queremos hacer una peticion a otra api, solo debemos cambiar el valor de la variable de entorno o sustituirla sin tocar el codigo.
+
+Como declararla:
+
+1)En la raiz del proyecto creamos un archivo y solo escribimos ".env" sin nada antes del .
+
+2)Creamos una variable y guardamos el endpoint en la misma de la siguiente forma.
+
+	REACT_APP_NOMBREQUEQUERAMOS=https://goscrum-api.alkemy.org/
+
+Siempre se comienza con REACT_APP y el valor de la variable tiene que ir sin comillas y la creamos por encima del compone
+
+3)Ahora tenemos que importar la variable en el componente que vamos a utilizar, de la siguiente forma
+
+const { REACT_APP_API_ENDPOINT } = process.env
+
+Una vez importada, podemos renombrarla de la siguiente forma.
+
+const { REACT_APP_API_ENDPOINT: API_ENDPOINT } = process.env

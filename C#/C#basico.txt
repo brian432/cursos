@@ -1,0 +1,11 @@
+Variables:
+
+int variable= 18; //int para declarar un numero entero
+float variable= 1.5; //float para variables de punto flotante
+char variable = 'a'; //char para variables de un solo caracter, comillas simples.
+bool variable = true/false;
+string variable = "asdasda"//string para conjunto de caracteres comillas dobles.
+
+
+
+

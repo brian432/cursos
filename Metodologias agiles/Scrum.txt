@@ -1,0 +1,102 @@
+Marco Scrum:
+
+Crum es un Marco de trabajo por el cual las personas pueden abordar problemas complejos, y al mismo tiempo entregar productos con el maximo valor posible.
+----------
+
+Equipo Scrum esta compuesto por:
+
+1)Product Owner: Representa el negocio, a los clientes, a los stateolders y a los usuarios finales. 
+   a)Tiene su foco en maximizar el valor del producto y del trabajo del equipo de desarrollo
+   b)Es responsable de la gestion y administracion del product backlog
+
+2)Scrum master:Se encarga de asegurar que el marco scrum sea entendido y adoptadop por el equipo
+
+   a)Ayuda a las personas externas al equipo scruma entender que interacciones con el equipo scrum pueden ser de ayuda y cuales no.
+
+
+3)Equipo de desarrollo: El equipo de desarrollo tiene 3 responsabilidades fundamentales e indelegables.
+
+    a)Proveer las estimaciones de cuanto esfuerzo sera requerido para cada una de las caracteristicas del prodcuto
+
+    b)Comprometerse al comienzo de cada sprint a construir un determinado incremento del producto para cumplir con el objetivo buscado
+
+    c)Entregar el producto terminado al finalizar cada sprint
+
+
+-----------------------------------------------------------------------------------------------------------------------
+
+Ceremonias del Sprint:
+
+Los sprint son bloques de tiempo fijo, que van de 1 a 4 semanas. Duranto los que se crea un incremento del producto utilizable. Los sprint estan compuestos por 4 ceremonias Scrum
+
+1)Sprint Plannig: Planificar el trabajo de ese sprint
+
+2)Dailies: Reuniones diarias, de no mas de 15' en las que se comparten avances y objetivos para las proximas 24hs.
+
+3)Sprint review:Se muestran avances del sprint a las partes interesadas. De esta forma se pueden hacer ajustes a los largo del sprint
+
+4)Sprint retro: Se mira hacia atras para identificar elementos que podrian mejorarse y sostener aquello que funciona bien. >Esta reunion no se enfoca en aspectos tecnicos sino mas bien en el funcionamiento del equipo
+-----------------------------------------------------------------------------------------------------------------------
+
+User stories: Las historias de usuario son las especificaciones funcionales que se detectan por medio de la interaccion entre el usuario y el equipo de desarrollo
+
+Las usertories deben responder a las reglas de las 3c.
+
+1)Card: Toda userstori se debe resumir en una carta o targeta
+2)Conversada: Toda userstori debe ser conversada con el product owner
+3)Confirmacion: y debe tener la confirmacion de que todo el equipo comprendio esa tarjeta.
+
+Las historias de usuario suelen escribirse con un formato muy sencillo.
+
+1)Que funcionalidad quiere el usuario, como quiere que se vea y para que quiere esa funcionalidad.
+----------
+
+Otra forma de redactar las userStories es por medio de la regla INVEST, esto significa que la userstorie debe ser:
+
+1)Independiente: Deben ser independientes entre si
+
+2)Negociables: los detalles deben poder ser conversables con los state holders
+
+3)Valiosa: deben aportar un valor al usuario final
+
+4)Estimables: deben poder ser estimadas con la precision suficiente para ayudar a la clientela a priorizar y planificar su implementacion
+
+5)Pequeña: deben ser lo suficientemente pequeñas para que permitan ser estimadas por el equipo de desarrollo
+
+6)Testeable: deben poder ser probadas por el usuario final
+
+-----------------------------------------------------------------------------------------------------------------------
+
+Estimaciones en Scrum:
+
+La intecion de la estimacion es definir el nivel de dificultad que tiene un item. Se busca llegar a un punto donde se pueda definir, en terminos relativos, la dificultad de realizar una tarea/historia/feature.
+
+
+Tecnicas de estimacion: 
+
+Para estimar existen diversas tecnicas. Entre las mas conocidas estan:
+
+1)Planning poker: Se utiliza un mazo de cartas, se expone el proyecto al "equipo scrum" y luego los votantes eligen una carta con la que concideren referenciar la dificultad o tiempo que les va a tomar hacer esa tarea. Las muestran al mismo tiempo y luego se utiliza la mayoria de coincidencia para estimar la tarea en cuestion. Cuando no hay mayoria de coincidencias se abre el debate.
+
+   Beneficios del Plannig poker:
+
+   a)Mayor participacion
+   b)Menos detalle sesgado
+   c)Menor posibilidad de influenciar a los demas
+
+El product owner siempre va a querer terminar el proyecto en el menor tiempo posible y los desarrolladores lo contrario por eso esta tecnica es fundamental.
+
+
+2)Sistema de cubos/Mapeo por afinidad:
+
+3)T-shirt sizing:
+
+-----------------------------------------------------------------------------------------------------------------------
+
+Refinamiento del backlog:
+
+Su objetivo es ayudar al product owner a mejorar o refinar los items del backlog. Es una reunion que dura 2 hs aproximadamente. Cuenta con la participacion del Product owner, el Scrum Master y el equipo de desarrollo.
+
+En esta reunion se itera sobre cada item, empezando por el mas prioritario, y el objetivo es empezar a refinarlos.
+
+Epica: dentro del refinamiento del backlog se hace una estimacion de esfuerzo, si uno de los items es muy grande se debe descomponer en items mas pequeños. Estos pequeños items, son llamados userstories.

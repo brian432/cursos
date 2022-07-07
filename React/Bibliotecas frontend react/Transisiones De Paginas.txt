@@ -1,0 +1,63 @@
+Transisiones entre paginas:
+
+1)Framer Motion
+
+Para instalar: yarn add framer-motion
+----------------------------------------------------------------------------------------
+
+Componentes:
+
+1)<AnimatePresence>: Luego de importar este componente, lo utilizamos encerrando el enrutador dentro de app. 
+<AnimatePresence>
+	<Routes>
+	     	...
+	</Routes>
+</AnimatePresence>
+
+Este componente, reaccionara con una animacion luego indicada, a cada cambio de las rutas.
+--------
+2)<motion.div></motion.div>: a)Luego de importar este componente ({AnimatePresence, motion}) creamos una constante que almacene un objeto con las animaciones que necesitamos que se haga al transisionar entre los componentes.
+
+	const pageTransition={
+				in:{opaciti:1}, 
+				out:{opacity:0}
+			  }
+
+b)Como paso siguiente, debemos encerrar las rutas de la siguiente forma
+
+	<Route 
+	    path="/Login"
+	    element={
+		    <motion.div 
+		        className="page" 
+		        initial="out" 
+		        animate="in" 
+		        exit="out" 
+		        variants={pageTransition}
+                                      >
+			<Login />
+		    </motion.div>
+                      } 
+                 />
+
+Propiedades de motion:
+
+className="page": El valor es "page" por defecto.
+
+initial="out": initial es la propiedad encargada de ver como inicia la animacion. "out" hace referencia a la propiedad del objeto "pageTransition"
+
+animate="in": mitad de animacion, el valor hace referencia a la propiedad "in" del objeto "pageTransition"
+
+exit="out": final de la animacion , el valor hace referencia a la propiedad "out" del objeto "pageTransition"
+
+variants={pageTransition}: aqui colocamos el objeto que va a dar contexto a las otras propiedades
+----------------------
+
+3)Cada vez que actualicemos la pagina o se reeplace un componente, la animacion ocurrira. Pero tambien necesitamos que las animaciones ocurran al cambiar de ruta, ejemplo:
+
+Estamos en en la seccion de portafolio y escroleamos a la seccion contacto, en estos casos la animacion no ocurrira, para solucionar esto, debemos avisarle a framer-motion que haga la animacion en el cambio de ruta, esto lo hacemos de la siguiente manera.
+
+	a)importamos useLocation() y se lo asignamos a una constante:
+		const location=useLocation();
+	b)Vamos a la etiqueta <Routes>: <Routes location={location} key={location.pathname}>
+Y listo, cada vez que el enrutador cambie, se aplicara las animaciones de framer-motion

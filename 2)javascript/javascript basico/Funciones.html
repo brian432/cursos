@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*Principios de la programacion funcional:*/
+        //no alteres una variable global
+        //la funciones siempre tienen que depender de sus argumentos/parametros nunca de variables globales
+        //si se va a retornar un solo elemento, no hace falta las llaves ni la palabra return, si se van a retornar mas de un solo elemento si hacen falta
+
+
+        //----------------------------------------------------------------------------
+        /*Al pasara funciones como argumentos/parametros de una funcion, no se ponen los parentesis.*/
+        //----------------------------------------------------------------------------
+        /*Mutaciones y efectos secundarios utilizando programación funcional:*/
+        //----------------------------------------------------------------------------
+        /*map():*/
+
+        //crea un arreglo a partir de iterar un objeto
+
+        //----------------------------------------------------------------------------
+        /*map(): Utilizando la desestructuracion de parametros en el caso de objetos*/
+        //----------------------------------------------------------------------------
+        /*filter():*/
+
+        //filter se utilza para filtrar objetos, dentro de la funcion callback utilizamos un condicional si el elemento analizado pasa la prueba, filter almacena el objeto entero.
+
+
+        const lista = [{ nombre: "Carlos", edad: 12 }, { nombre: "Juan", edad: 12 }]
+
+        const resultado = lista.filter(persona => persona.edad > 18);
+
+        console.log(resultado);
+
+        //----------------------------------------------------------------------------
+        /*Ejemplo de uso de map() y filter():*/
+
+        const lista = [{ nombre: "Carlos", edad: 12 }, { nombre: "Juan", edad: 12 }]
+
+        const resultado = lista.filter(persona => persona.edad > 18).map(persona=>({nombre:persona.nombre, edad:persona.edad}));
+
+        //----------------------------------------------------------------------------
+        /*Metodo slice():*/
+        //----------------------------------------------------------------------------
+        /*metodo splice():*/
+        //----------------------------------------------------------------------------
+        /*Metodo concat():*/
+        //----------------------------------------------------------------------------
+        /*Metodo reduce(): con arreglos*/
+        //----------------------------------------------------------------------------
+        /*reduce con objetos*/
+        //----------------------------------------------------------------------------
+        /*Ejemplo del uso de los tres metodos (reduce(), filter(), map()).*/
+        //----------------------------------------------------------------------------
+        /*Metodo sort():*/
+        //----------------------------------------------------------------------------
+        /*Metodo split():*/
+        //----------------------------------------------------------------------------
+        /*Metodo join():*/
+        //----------------------------------------------------------------------------
+        /*Metodo trim(): */
+        //----------------------------------------------------------------------------
+        /*Metodo every():*/
+        //----------------------------------------------------------------------------
+        /*Metodo some():*/
+        //----------------------------------------------------------------------------
+        /**/
+        //----------------------------------------------------------------------------
+        /**/
+        //----------------------------------------------------------------------------
+
+    </script>
+</body>
+
+</html>

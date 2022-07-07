@@ -1,0 +1,56 @@
+Input:
+
+Si queremos que el borde por defecto del input, el fondo, la linea del input que aparece cuando hacemos foco y la linea titlante del texto en el input desaparezcan:
+
+input{
+    border:0;
+    background:none;
+    outline:none;
+    caret-color:el mismo color que el fondo del input;
+}
+
+/*spellcheck: false*/ dentro del input para que al escribir algo mal no salga la linea roja de correccion
+
+------------------------------------
+
+button:focus{
+	la pseudoclas focus se utiliza cuando un elemento toma el foco, en el caso de los botones cuando un boton es presionado.
+}
+
+---------------------------------------
+
+Quitar las flechitas en los inputs type=number
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Select. Como utilizar en un nav un elemento html select con un placeholder en el select
+
+<select name="select-Conect" id="">
+          <option hidden selected>Connect</option> 1)
+          <option value="contact">Contact</option>
+          <option value="newsletter">Newsletter</option>
+          <option value="linkedln">LinkedIn</option>
+</select>
+
+1)hidden selected: para utilizar esa opcion como el titulo del select
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Input type search:
+
+Editar la x dentro del input type search:
+
+input::-webkit-search-cancel-button{
+    display: none;// para que no aparezca
+}

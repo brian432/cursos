@@ -1,0 +1,34 @@
+Toast:
+
+Toast sirve para darle feedback al usuario cuando el mismo interactua con la aplicacion. Es una especie de alert().
+
+En el caso crear una tarea en la aplicacion o crear una lista o lo que fuere, al enviar el formulario podemos crear una alerta (toast) que indique que la tarea fue creada. Es una especie de cartel indicandote que el formulario fue enviado correctamente y la interaccion fue echa.
+
+1)yarn add react-toastify: instalacion
+
+2)  import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';: importar toast
+
+3)Para utilizarla lo mejor es ir a ver la documnetacion, es muy sencilla, en la siguiente pagina "https://fkhadra.github.io/react-toastify/introduction"
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+sweet alert
+
+1)yarn add sweetalert2: instalacion
+
+2)import Swal from 'sweetalert2': importar
+
+3)Codigo para usar
+
+    Swal.fire({
+        title: 'Usuario y/o contraseña invalida',
+        text: 'Por favor, ingrese un usuario y/o contraseña validos',
+        width:"400px",
+        timer:10000,
+        timerProgressBar:true,
+        confirmButtonText: 'Aceptar'
+    })
+
+4)Para entender mejor sus propiedades visitar la documentacion, que tambien es muy sencilla, en "https://sweetalert2.github.io/#download" 

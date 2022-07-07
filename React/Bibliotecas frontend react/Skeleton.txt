@@ -1,0 +1,28 @@
+Skeleton es un reloader para componentes.
+
+1)yarn add react-loading-skeleton: instalar skeleton
+
+2)import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css': importar skeleton
+
+3)Siempre ir a chequear la documentacion "https://yarnpkg.com/package/react-loading-skeleton"
+
+4)<skeleton/> : para utilizar el componente 
+
+ejemplo
+
+	const [loading, setLoading]=useState(false)
+
+useEffect(() => {
+        setLoading(true)
+        fetch("....")
+            .then((response) => response.json())
+            .then(data => {
+                setList(data.result)
+                setTimeout(()=>{
+                    setLoading(false) //agregamos esta funcion para retrasar la carga de data.result y asi poder ver 			el efecto del reloader <skeleton />
+                },10000)
+            })
+    }, [])
+
+luego dentro del return del componente verificamos si loading?<skeleton width={20} hegith={20}/>:<div>...</div>

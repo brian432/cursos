@@ -1,0 +1,84 @@
+Extraer valores de un objeto json y almacenarlos en un array:
+
+
+const json = [
+	{
+		"id": "1",
+		"Nombre":"alberto",
+		"Apellido":"Fernandez",
+		"Idiomas":["Español", "Frances", "italiano"]
+	},
+	{
+		"id": "2",
+		"Nombre":"alberto",
+		"Apellido":"Fernandez",
+		"Idiomas":[]
+	},
+	{
+		"id": "3",
+		"Nombre":"alberto",
+		"Apellido":"Fernandez",
+		"Idiomas":["Español", "Frances", "italiano"]
+	}
+
+];
+
+let contenido=[];
+json.forEach((elemento, indice)=>{
+	const array=[
+		elemento.Nombre,
+		elemento.Apellido,
+		...(elemento.Idiomas || []) /*Desempacamos el array mediante el parametro de 
+	]			       /*propagacion "..." luego, lo que esta entre parentesis dice	
+	contenido.push(array);	       /* que si la propiedad Idiomas no existe en el elemento, o 
+});				       /* existe pero esta vacia, que devuelva un array vacio.
+
+
+1)Dentro de la variable contenido vamos a tener arrays con todos los valores de las propiedades que almacenamos en la variable array. Asi obtendremos en un solo lugar todos los valores de las propiedades que necesitemos extraer del objeto json.
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Vamos a obtener todos los innerHTML de los elementos dentro del contenedor.
+
+<div id="contenedor">
+</div>
+
+
+const contenedor=document.getElementByID("contenedor");
+
+
+const resultado=Array.from(contenedor.children).map(i=>i.innerHTML);
+
+1)Primero vamos a transformar el HTMLCollection en un array. Ese array va a contener todos los parrafos dentro de contenedor en forma de objetos. [{},{},{}]
+
+console.log(Array.from(contenedor.children)); 
+
+2)Luego vamos a mapear ese array y devolver otro array solo con el InnerHTML de cada elemento almacenado. lo que va a hacer map() es recorrer el array y en cada objeto va a devolver el valor de la propiedad innerHTML de cada objeto recorrido.
+
+Para que sirve esto? Una posibilidad seria utilizar este codigo en un evento click. Ejemplo:
+
+<div id="tagContenedor">
+	<span>Carlos</span>
+	<span>Jose</span>
+	<span>Marcela</span>
+	<span>Carola</span>
+</div>
+
+<div id="contenedor">
+</div>
+
+const contenedor=document.getElementByID("contenedor");
+
+const resultado=Array.from(contenedor.children).map(i=>i.innerHTML);
+
+1)Necesitamos que cada vez que hagamos click en un "tag" ese mismo tag aparezca en otro div. Pero que solo aparezcan una vez, es decir que si apretamos dos veces en un mismo "tag" solo debe aparecer una vez en el div del evento.
+
+2)Nuestro contenedor estara vacio, por ende la variable resultado tambien estara vacia. Una vez que hacemos click en un tag , ese tag se agregara al contenedor. 
+
+3)Hacemos click en el tag que contiene el innerHTML Jose, el tag se agregara al contenedor vacio mediante una funcion y la variable resultado almacenara la palabra Jose dentro. 
+
+4)Volvemos a hacer click sobre el tag jose, ahora una funcion evaluara si "jose" esta dentro de la variable resultado, si esta dentro, entonces no permitira que el tag se vuelva a agregar al contenedor.
+
+
+------------------------------------------------------

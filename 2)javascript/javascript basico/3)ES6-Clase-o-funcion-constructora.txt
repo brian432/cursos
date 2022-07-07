@@ -1,0 +1,49 @@
+Sintaxis de clases para definir una función constructora:
+
+En el caso de tener que crear 3 objetos con las mismas propiedades pero diferentes valores, con lo que sabemos hasta aca, hariamos lo siguiente.
+
+const obj1={
+    nombre:"Brian",
+    apellido:"Cabrera",
+    edad:28
+};
+const obj2={
+    nombre:"Juliana",
+    apellido:"Rodriguez",
+    edad:20
+};
+const obj3={
+    nombre:"Marcela",
+    apellido:"Gonzalez",
+    edad:30
+};
+
+Para ahorrarnos este trabajo en el caso de tener que crear cientos de objetos con las mismas propiedades pero diferentes valores, podemos crear una funcion constructora, un concepto nuevo y simple que minimiza el codigo:
+
+class Datos{
+    constructor(nombre, apellido, edad){
+        this.nombre=nombre;
+        this.apellido=apellido;
+        this.edad=edad;
+    }
+};
+
+const obj1=new Datos("Brian", "Cabrera", 28);
+const obj2=new Datos("Juliana", "Rodriguez", 20);
+const obj3=new Datos("Marcela", "Gonzalez", 30);
+
+La funcion/clase datos creara 3 objetos con su nombre, apellido, y edad.
+
+Siempre la clase/funcion constructora debe escribirse con mayusculas al principio.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utiliza getters (accesores) y setters (mutadores) para controlar el acceso a un objeto:
+
+
+Puedes obtener valores de un objeto y establecer el valor de una propiedad dentro de un objeto.
+Estas operaciones clásicamente se llaman getters y setters.
+
+
+
+

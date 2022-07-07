@@ -1,0 +1,61 @@
+Metodos de window:
+
+
+open(): sirve para crear ventanas emergentes. Ejemplo: 
+
+window.open("http//youtube.com"); cuando carguemos nuestra html en el navegador se abrira una ventana emergente de youtube.
+
+------------------------
+
+closed(): Para cerrar la ventana emergente
+
+------------------------
+
+stop(): se utiliza para parar la carga de una ventana.
+
+------------------------
+print(): se utiliza para imprimir en papel lo que indiquemos
+
+------------------------
+
+confirm(): genera una ventana con dos opciones, cancelar y aceptar, devuelve true y false.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Propiedades screen y scrool:
+
+screen: 
+
+screenLeft: 
+
+screenTop: 
+
+scrollX: devuelve cuantos pixeles te desplazaste en el eje x
+
+scrollY: devuelve cuanto pixeles te desplazaste en el eje y 
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+Propiedades de window:
+
+closed: Verifica si una ventana emergente esta cerrada, devuelve un valor boleano.
+
+---------------------------------
+
+location.href: devuelve la direccion en la que esta almacenada el documento
+
+location.hostname: devuelve solamente el dominio "https//www.youtube.com" de esta direccion devuelve www.youtube.com
+
+location.pathname: devuelve la url sin la direccion de inicio de la url
+
+location.protocol: devuelve el protocolo
+
+location.assing(): carga un nuevo documento
+
+location = "https://..." : te redirige hacia la pagina indicada entre los parentesis
+
+innerWidth = chequea el tamaño de la ventana. ejemplo 
+
+	window.innerWidth > 900? true:false;
+
+Si el tamaño de la ventana es mayor a 900px devuelve true sino false
+

@@ -1,0 +1,385 @@
+Propiedades: (las propiedades se escriben sin () al final a diferencia de las funciones)
+
+.length = sirve para contar los elementos o caracteres
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+Funciones para arreglos:
+
+push(): se utiliza para añadir elementos al final de un array. 
+
+unshift(): funciona como push() pero añade un elemento al principio de un arreglo.
+
+Se utilizan de la siguiente forma:  
+
+var array=[1,2,23];  array.push(45); array.unshift(12)
+
+array=[12,1,2,23,45]
+
+
+-----------------------
+
+pop(): elimina el ultimo elemento de un arreglo y lo asigna a una variable. ejemplo:
+
+var array=[1,2,3]; var myArray= array.pop()
+
+array=[1,2]; myArray=3;
+
+shift(): igual que pop() pero elimina el primer elemento.
+
+-----------------------
+
+splice(): Se utiliza para eliminar cualquier número de elementos consecutivos de cualquier parte de un arreglo.
+El primer parámetro de splice() representa el índice del arreglo a partir del cual se empiezan a eliminar los elementos, mientras que el segundo parámetro indica el número de elementos a eliminar.
+
+Los elementos eliminados pueden ser asignados a una variable al igual que pop()
+
+Esta misma funcion tambien se utiliza para agregar elementos, indicandole un tercer argumento.
+
+A partir del tercer argumento dentro de la funcion splice() podemos suplantar los elementos eliminados con otros, ejemplo:
+
+const numbers = [10, 11, 12, 12, 25, 32, 15];
+const reemplazo=numbers.splice(3, 3, 13, 14); 
+numbers ahora es igual a [10, 11, 12, 13, 14, 15]:
+
+reemplazo=[12,25,32];
+numbers=[10,11,12,13,14,15];
+
+-----------------------
+
+slice(): copia o extrae un número determinado de elementos a un nuevo arreglo, sin modificar el arreglo "clonado". Toma sólo 2 parámetros: el primero es el índice en el que se inicia la extracción, y el segundo es el índice en el que se detiene la extracción. La extracción se producirá hasta el índice, pero sin incluir el elemento en este índice.
+Ejemplo:
+let weatherConditions = ['rain', 'snow', 'sleet', 'hail', 'clear'];
+
+let todaysWeather = weatherConditions.slice(1, 3);
+
+todaysWeather=[snow, sleet];
+
+-----------------------
+
+indexOf(): nos permite comprobar rápida y fácilmente la presencia de un elemento en un arreglo. Toma un elemento como parámetro, y cuando lo llama, devuelve la posición, o índice, de ese elemento, o -1 si el elemento no existe en el arreglo.
+
+------------------------
+includes(): determina si una matriz incluye un determinado elemento, devuelve true o false según corresponda.
+
+------------------------
+
+
+.replace(): sirve para reemplazar una palabra o expresion regular dentro de una cadena. pide dos parametros, en el primero la cadena a buscar y en el segundo la palabra que va a reemplazar esa cadena.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+Funciones de objetos: 
+
+hasOwnProperty(): determina si un objeto tiene una propiedad con ese nombre.
+
+in: hace lo mismo que hasOwnProperty() la sintaxis es la siguiente:  "propiedadBuscada" in objeto
+-----------------------
+
+Object.keys():Esto devolverá un arreglo con cadenas que representan cada propiedad del objeto.
+** Dentro de los argumentos le debemos pasar el objeto. 
+------------------------------------------------------------------------------------------------------------------------------------------------
+Math.random(): genera un numero entre 0 y 0.9 lo podemos asignar a una variable o simplemente a un return de una funcion
+
+Math.floor(): redondea un numero decimal hacia abajo. lo podemos utilizar con Math.random(). ejemplo:
+
+Math.floor(Math.random() * 20); genera un numero entre 0 y 19
+
+Math.max(numeros..): devuelve el mayor.
+
+Math.min(numeros): devuelve el menor.
+
+Math.pow(): La función  Math.pow() devuelve la  base elevada al exponente base. Es decir que devuelve el numero pasado al cuadrado.
+
+toFixed(): Dentro de los argumentos indicamos la cantidad de numeros decimales que queramos que aparezcan.
+
+Math.PI: si lo agregamos una variable dara el numero pi;
+
+Math.floor((Math.random() * (max - min + 1)) + min); genera un numero aleatorio entre un minimo y un maximo pasados como variables.
+
+setTimeout(): El método setTimeout () llama a una función o evalúa una expresión después de un número específico de milisegundos. 
+
+-----------------------
+parseInt(): analiza una cadena y devuelve un entero. A continuación, te presentamos un ejemplo:
+
+var a = parseInt("007");
+
+-----------------------
+
+propmpt(): pedirle algo al usuario.
+
+toUpperCase(): transforma el texto a mayuscula.
+
+toLowerCase(): minusucla.
+
+split():esta funcion toma una cadena y devuelve un arreglo. dentro de los parametro podemos indicarle cual ser el separador ejemplo:
+
+let cadena="Hola como andas como estas";
+let separador=cadena.split(" ");
+
+separador=["Hola","como", "andas", "como", "estas"];
+
+
+
+-----------------------
+alert(): muestra una ventana de alerta en el navegador.
+
+confirm(): muestra una ventana de diálogo con un mensaje opcional y dos botones, Aceptar y Cancelar.
+
+Number(): analiza una cadena y devuelve un entero
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Palabras clave:
+
+delete: Se utiliza para eliminar propiedades de objetos ejemplo de su uso:
+
+delete objeto.propiedad;
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+Recordatorios basicos
+
++: operador de concatenacion de string
+
+[]:  obtener un carácter en un índice (index) específico dentro de una cadena. ejemplo: var hola="chau"
+var chau=hola[0] (chau es igual a "c")
+
+Para obtener el utlimo caracter podemos utilizar el siguiente codigo var chau=hola[hola.length -1 ]
+
+Los valores boleanos son true y false. (son pequeños interruptores de encendido, donde true es encendido y false es apagado.)
+
+&&: operador logico. devuelve true si las operaciones son correctas. ejemplo: if(9>5 && 12<122)...
+| |: operador logico "or" devuelve true si al menos una de las operaciones es correcta
+
+===: devuelve true o false
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Arrays:
+
+Para cambiar un elemento dentro del array podemos hacer lo siguiente.
+
+var array=[0,15,24];
+array[1]=12;
+
+El array ahora es el siguiente.  array=[0,12,24];
+
+--------------------------
+
+Para referenciar arreglos dentro de arreglos hacemos lo siguiente.
+
+var array=[[0,2,3], [1,9,8],[12,25,7]];
+
+var myArray=[1][2]; 1 hace referencia al segundo elemento, y el 2 hace referencia al tercer elemeto de ese array.
+
+Mediante el codigo anterior myArray tiene el siguiente valor. myArray=8;
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+objetos:
+
+var cat = {
+  "name": "Whiskers", (Las propiedades pueden escribirse con o sin comillas)
+  "legs": 4,
+  "tails": 1,
+  "enemies cats": ["Water", "Dogs"]
+};
+
+Hay dos maneras de acceder a los valores de las propiedades de un objeto: notación de puntos (.) y notación de corchetes ([]), similar a un arreglo.
+
+Notacion de punto.
+var propiedad=cat.name;  (propiedad=Whiskers)
+
+Notacion de corchetes.
+var propiedad=cat["enemies cats"]; (propiedad=["Water", "Dogs"])
+
+Cuando la propiedad tiene dos palabras o un espacio entre el nombre de la propiedad se utiliza la notacion de corchete y siempre se utiliza comillas cuando utilizamos la notacion de corchetes
+
+
+------------------------------------
+
+Agregar propiedades y valores en un objeto.
+
+var cat = {
+  "name": "Whiskers",
+  "legs": 4,
+  "tails": 1,
+  "enemies cats": ["Water", "Dogs"]
+};
+
+cat.nuevaPropiedad="nuevoValor";
+
+cat = {
+    "name": "Whiskers",
+    "legs": 4,
+    "tails": 1,
+    "enemies cats": ["Water", "Dogs"],
+    nuevaPropiedad:"nuevoValor"
+
+};
+
+--------------------------------
+
+acceder a sub propiedades de un objeto.
+
+Lo hacemos por niveles, debemos utilizar la notacion del punto en las propiedades de una sola palabra y la notacion de corchetes en las propiedades de dos palabras ejemplo:
+
+var myStorage = {
+  "car": {
+    "inside": {
+      "glove box": "maps",
+      "passenger seat": "crumbs"
+     },
+    "outside": {
+      "trunk": "jack"
+    }
+  }
+};
+
+var gloveBoxContents = myStorage.car.inside["glove box"];
+
+gloveBoxContents = "maps"
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Funciones:
+
+Sintaxis de una funcion:
+function hola(){
+}
+
+Declaracion de variables:
+
+Las variables globales son las que se declaran fuera de las funcion. Estas variables pueden ser utilizadas en todo el codigo.
+
+Las variables que declaremos dentro de una funcion no podran ser acedidas desde fuera.
+
+Es recomendable utilizar diferentes nombres para las variables locales(dentro de una funcion) y globales(fuera de las funciones). Si esto no ocurre, la variable local estara por encima de la global en la funcion uitilizada.
+-------------------
+La declaracion return hace salir de la funcion, ejemplo:
+
+function hola(a, b){
+    if(a<0 || b<0){
+        return
+    }
+    return a+b;
+} Esta funcion dice que si uno de los argumentos pasados a la funcion es menor q 0, que salga de la funcion retornando undefined, si ninguno de los argumentos es menor que 0 tiene que retornar la suma de los dos argumentos.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+Sentencias switch:
+
+Sirve para comparar ejemplo: 
+
+switch(algunValor){
+    case 1:
+        return "algo";
+        break;
+    case 2:
+        return "otraCosa";
+        break;
+    default:
+        return "algo por si no coinciden los case";
+        break; 	
+} si algunValor== 1 retorna "algo", si algunValor==2 retorna "otraCosa", si ningun case  coincide se ejecuta el default.
+
+En el caso de que tengamos muchos case que retornen el mismo resultado podemos escribir el codigo asi:
+
+switch(algunValor){
+    case 1:
+    case 2:
+    case 3:
+        return "algo";
+        break;
+    case 4:
+        return "otra cosa";
+        break; 		
+    default:
+        return "algo por si no coinciden los case";
+        break; 	
+}		
+------------------------------------------------------------------------------------------------------------------------------------------------
+Bucle for
+
+for (a; b; c), donde a es la sentencia de inicialización, b es la sentencia condicional, y c es la expresión final. ejemplo:
+
+Usa un bucle for para empujar los valores desde el 1 al 5 en myArray.
+
+var myArray = [];
+
+for(var i = 1;i<=5;i++){
+  myArray.push(i)
+}
+
+En javascript el bucle while y for son muy parecidos	  
+
+------------------------------
+bucle for anidado
+
+
+function multiplyAll(arr) {
+  var product = 1;
+  for(var i=0;i<arr.length;i++){
+    for(var j=0; j<arr[i].length;j++){
+      product*=arr[i][j] /** en la primer vuelta de bucle vamos a multiplicar la variable product, que es 1 ,por el 
+    }		/** el primer elemento del primer array. arr[i] es el array que contiene [1,2] y arr[i][j] es 
+  }		/** primer elemento de ese array. Siempre que queramos acceder a un elemento de 
+  return product;	/** un sub array debemos referenciarlo de esa manera. ejemplo este codigo:
+}		/** var hola =multiplyAll[2][0]; dice que hola es igual a 5.
+
+multiplyAll([[1,2],[3,4],[5,6,7]]);	
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Operador ternario
+
+La sintaxis es a ? b : c, donde a es la condición, b es el código a ejecutar cuando la condición devuelve true, y c es el código a ejecutar cuando la condición devuelve false.	
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Ejemplo de usos de true y false. Por ejemplo, queremos que un codigo copie solo las palabras o letras, de una cadena de texto,	 que esten entre parentesis. Para resolver esto podemos utilizar una especie de boton de encendido y apagado, cuando el programa vea el primer parentesis, se enciende y empieza a copiar los caracteres y cuando ve el parentesis de cierre se apaga y deja de copiar.
+
+var texto=prompt("Ingresa un texto con '()'");
+var parentesis="";
+var copiar=false;
+for(let i=0;i<texto.length;i++){
+     if(texto.charAt(i)==="("){
+          copiar=true;
+          i+=1;
+     }
+     if(texto.charAt(i)===")"){
+          copiar=false;
+     }
+     if(copiar){
+          parentesis+=texto.charAt(i);
+     }
+}
+document.write(parentesis)
+
+---------------------------------------
+
+Ejemplo de invertir una cadena.
+
+var cadena=prompt("Ingrese una cadena y se la devolvere al reves");
+var contadorDeCaracteres=cadena.length;
+var salida="";
+
+while(contadorDeCaracteres>=0){
+      salida+=cadena.charAt(contadorDeCaracteres);
+      contadorDeCaracteres--;
+}
+document.write(salida);
+------------------------------------------------------------------------------------------------------------------------------------------------
+funciones flecha versus comunes.
+
+En el unico caso que son diferentes es cuando se las utiliza como metodos de un objeto
+
+const coche = {
+  marca: 'Ford',
+  modelo: 'Mustang',
+  arrancar: function() {
+    console.log(`Arrancando el coche ${this.marca} ${this.modelo}`);
+  },
+  parar: () => {
+    console.log(`Parando el coche ${this.marca} ${this.modelo}`);
+  }
+}
+
+en el metodo arrancar() this hace referencia al objeto coche como ya aprendimos, en el caso del metodo parar() que esta declarado con una funcion de flecha, this no hace referencia el objeto coche, por eso enel unico caso que no es recomendable utilizar es en este.

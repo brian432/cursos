@@ -1,0 +1,11 @@
+Yarn comandos:
+
+1)Crear una app react: yarn create react-app nombredelaapp
+
+2)Luego de crear la app, redireccionamos la ventana hacia la aplicacion: code .  -r
+
+3)Iniciar aplicacion: yarn start
+
+4)Agregar una dependencia: yarn add nombreDeLaDependencia
+
+5)Eliminar una dependecia de la aplicacion: yarn remover nombreDeLaDependencia

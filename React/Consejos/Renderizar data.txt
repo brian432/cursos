@@ -1,0 +1,58 @@
+1)Cuando renderizamos data proveniente de una api, y en algun componente de la app vamos a tener que filtrar por alguna propiedad, lo conveniente es crear 2 estados.
+
+const [state, setState]=useState("")
+const [filter, setFiter]=useState("")
+
+funcionActualizadora(
+	setState(data.result)
+	setFilter(data.result)
+)
+----------
+En caso de usar una sola variable para almacenar la informacion, al momento de filtrar nos encontraremos con el siguiente problema.
+
+const [state, setState]=useState()
+
+const obj=[
+	{titulo:"Uno", nombre:"Raul", edad:"45"},
+	{titulo:"Uno", nombre:"Carlos", edad:"22"},
+	{titulo:"6", nombre:"Raul", edad:"12"}
+]
+funcionActualizadora(
+	setState(obj)
+)
+
+
+setState(obj.filter(data=>data.titulo==="Uno"))
+------
+//al hacer una interaccion en un select, le pedimos a la aplicacion que renderize un componente con los datos del objeto que contenga el titulo "Uno", ahora state sera igual a 
+[
+	{titulo:"Uno", nombre:"Raul", edad:"45"},
+	{titulo:"Uno", nombre:"Carlos", edad:"22"}
+]//
+------
+setState(obj.filter(data=>data.nombre==="Raul"))
+
+//luego le decimos que renderize un componente con los datos del objeto que contengan el nombre "Raul"
+State ahora sera igual a 
+
+[
+	{titulo:"Uno", nombre:"Raul", edad:"45"},
+]
+
+Este objeto {titulo:"6", nombre:"Raul", edad:"12"} no sera renderizado, porque state lo dejo fuera en el primer filtro.
+//
+
+Para que esto no suceda, creamos 2 estados, los dos almacenaran el objeto, pero las filtraciones seran de la siguiente manera.
+
+
+const [state, setState]=useState("")
+const [filter, setFiter]=useState("")
+
+funcionActualizadora(
+	setState(obj)
+	setFilter(obj)
+)
+
+**interactuamos con un select**
+
+setFilter(state.filter(data=> data.nombre ==="Raul")) //De esta manera, state no sufrira alteraciones y filter siempre se actualizara a partir del objeto completo

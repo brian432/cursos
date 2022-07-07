@@ -1,0 +1,41 @@
+html:
+
+<div id="hamburguesa" onClick={()=>menu===""?setMenu("encendido"):setMenu("")}>
+          <div className={menu==="" ? "":"linea1"}></div>
+          <div className={menu==="" ? "":"linea2"}></div>
+          <div className={menu==="" ? "":"linea3"}></div>
+</div>
+
+
+scss:
+
+#hamburguesa{
+    display: none;
+    cursor: pointer;
+    div{
+        width:25px;
+        height: 3px;
+        background-color: black;
+        margin: 5px;
+        transition: all 0.3s ease;
+    }
+}
+
+mediaquery:
+
+@media (max-width:700px){
+    #hamburguesa{
+        display: block;
+    }
+
+
+hamburguesa animacion click         
+.linea1{
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+.linea2{
+    opacity: 0;
+}
+.linea3{
+    transform: rotate(45deg) translate(-5px, -6px);
+}

@@ -1,0 +1,15 @@
+Para ocupar el 100% de la pagina de ancho y alto en webs que no necesitan scrools.
+
+
+Body{
+	min-heigth:100vh;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	background:blue; //El background de la pagina tiene que ir en el body
+}
+
+PrimerHijoDelBody{
+	width:100%
+}
+	

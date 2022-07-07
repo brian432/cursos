@@ -1,0 +1,156 @@
+Bucle forEach():
+
+Sintaxis:
+
+forEach((elementoRecorrido, indiceDelElementoRecorrido)=>{})
+
+------------------------------------------------
+
+addEventListener(): dentro de los parametros: Primero= evento que esperamos escuchar, como segundo elemento la funcion a llamar cuando el evento ocurra.
+
+Sintaxis:
+
+addEventListener("click", ()=>{
+	....
+})
+
+---------------------------------
+
+Metodos para el evento:
+
+addEventListener("click", (e)=>{
+	e.preventDefault(); para que no se recargue la pagina
+	e.stopPropagation(); Si tenemos un evento click en un boton y otro evento click en en contenedor del boton, una vez que hagamos click en el boton tambien se ejecutara el evento del contenedor. Para que esto no suceda usamos e.stopPropagation();
+})
+------------------------------------------------------------------------------------------------------------------------------------------------
+eventos javascript:
+
+eventos del mouse:
+
+click: cuando hacemos click sobre un elemento.
+
+dblclick: cuando hacemos doble click sobre un elemento
+
+mouseover: cuando posicionamos el mouse sobre el elemento, equivalente a "hover:" en css 
+
+-------------------------------
+eventos de la interfaz: Son los eventos que suceden con la manipulacion de la interfaz grafica de la pagina
+
+error: Sucede cuando ocurre un error en la carga de archivos multimedia
+
+scroll: Cuando se scrolea en la pagina
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+setAttribute(): Modifica el valor de un atributo. Ejemplo:
+
+<input id="input" type="text">
+
+const hola=document.getElementById("input");
+
+hola.setAttribute("type", "button"); modifica el atributo type de text a button, ahora el elemento con el id "input" es un input type="button"
+-----------------------
+getAttribute():obtiene el valor de un atributo
+
+
+removeAttribute():remueve un atributo
+
+Tambien podemos acceder y modificar los atributos mediante el punto, es decir que primer asociamos el elemento a una variable con getElementById() u otro y luego modificamos los atributos de la siguiente manera.
+
+hola.type="button";
+
+
+--------------------------------------------------
+
+Array.from():
+
+Cuando utilizamos document.querySelectorAll("") creamos una nodeList, que es un elemento fura de javascript que no podemos iterar mediante .map() .filter() .reduce(). Para poder utilizar estas funciones debemos transformar esa nodeList en un array. Esto lo hacemos mediante el metodo. Array.from()
+
+Sintaxis:
+
+const hola=Array.from(document.querySelectorAll(""));
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Aplicando y removiendo clases y estilos a un elemento:
+
+Clases: /*Dentro de los parentesis va la clase a agregar.*/
+
+elemento.classList.add("") =Agrega una clase a un elemento
+
+elemento.classList.remove("")=Remueve una clase de un elemento
+
+elemento.classList.containt("")=Devuelve true si el elemento contiene la clase que esta dentro de los parentesis
+
+elemento.classList.toggle("")=Si la clases existe en el elemento, la elimina y devuelve false. Si la clase no existe la agrega y devuelve true.
+
+elemento.classList.replace("clase1", "clase2"): Reemplazamos una clase por otra.
+
+------------------------------------
+
+Propiedades: 
+
+Para agregar un estilo css a un elemento:
+
+elemento.style.propiedad="valor";
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+Obtencion y modificacion de elementos:
+
+
+textContent: devuelve el texto de cualquier elemento html
+-----------------
+
+innerHTML: devuelve el contenido html de un elemento. ejemplo
+
+<p id="parrafo">hola como estas <b>Marcela</b></p>
+
+const hola = document.getElementById("parrafo");
+
+console.log(hola.innerHTML); en la consola imprimira el contenido dentro del elemento p incluyendo la etiqueta <b>  "hola como estas <b>marcela</b>"
+
+----------------
+
+outerHTML: devuelve el elemento completo. Siguiendo el ejemplo anterior, la consola mostraria lo siguiente.
+
+<p id="parrafo">hola como estas <b>Marcela</b></p>
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+Creacion de elementos:
+
+createElement():Sirve para crear un elemento html ejemplo de su uso.
+
+<div id="contenedor"></div>
+
+const contenedor=document.getElementById("contenedor");
+
+const item=document.createElement("LI"); 
+
+
+--------------------------------------
+
+createDocumentFragment():
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+Inputs:
+
+form.addEventListener("submit", (e)=>{
+    e.preventDefault();
+    let emailValue=email.value;
+    if(validacionEmail(emailValue)){
+        console.log("Email valido");
+     }else{
+        console.log("Email invalido");
+     }
+})
+
+function validacionEmail(email){
+      var regex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+      return regex.test(String(email).toLowerCase());
+}
+
+1)Primero ponemos al formulario a la escucha del evento "submit"
+2)Segundo creamos una variable que va a tener el valor de lo que esta escrito en el input type email
+3)Utilizamos un condicional if para saber si la funcion validacionEmail devuelve true
+4)Creamos la funcion validacionEmail que utiliza una expresion regular buscada en internet, y la utilizamos con el metodo test() que retornara true si el email, pasado como argumento de la funcion, coincide con la expresion regular

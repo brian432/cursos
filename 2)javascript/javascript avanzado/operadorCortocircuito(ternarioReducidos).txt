@@ -1,0 +1,44 @@
+Los operadores && y || se llaman operadores en cortocircuito porque si no se cumple la condición de un término no se evalúa el resto de la operación.
+
+Ejemplo de && como condicional:
+
+const array=true;
+const resultado="hola";
+
+array && console.log(resultado);
+
+Si array==true imprimira en consola "hola" si array==false, no continuara ejecutando el resto, es decir que en este caso no imprimira nada.
+
+-------------------------------------------------------------------------------------------
+
+Ejemplo de | | como condicional:
+
+const array = [
+        {
+            "nombre": "brian",
+            "apellido": "cabrera",
+            "lenguages": ["Aleman", "frances", "Italiano"]
+        },
+        {
+            "nombre": "raul",
+            "apellido": "gonzalez"
+        }
+    ];
+
+
+    let contenido = [];
+    array.forEach((elemento, indice) => {
+        const array2 = [
+            elemento.nombre,
+            elemento.apellido,
+            ...elemento.lenguages | | []
+        ];
+        contenido.push(array2);
+
+    })
+    
+    console.log(contenido)
+
+1)Tenemos que recorrer un objeto json con dos objetos dentro y necesitamos obtener los valores de cada objeto en un array (un array para cada objeto). Sabemos que en los dos objetos las propiedades nombre y apellido existe, pero no estamos seguros de si la propiedad lenguages existe en los dos por eso recurrimos al condicion | | (or)
+
+Entonces le decimos a javascript que en la variable array2 dentro del bucle forEach que obtenga los valores de nombre, apellido y si lenguages existe lo almacene y sino que devuelva un array vacio. Si no hiciecemos esto, ocurriria un error porque lenguages no existe en el segundo objeto entonces apareceria el error (elemento.lenguages no existe)

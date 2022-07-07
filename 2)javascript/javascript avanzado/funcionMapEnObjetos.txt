@@ -1,0 +1,16 @@
+Utilizar map() en objetos
+
+Podesmo hacerlo de 2 formas.
+
+1) 
+const data={...}
+
+const propiedades = [];
+
+    for (let prop in data) {
+        propiedades.push(prop);
+    }
+
+propiedades.map(...)
+
+2)Object.keys(data).map(...)

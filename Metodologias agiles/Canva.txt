@@ -1,0 +1,27 @@
+Kanvan: 
+
+Beneficios de Kanvan:
+
+1)Visualizacion: Tener un tablero colaborativo nos permite ver el estado de cada una de las tareas. Nos da transparencia en esa informacion que eso incrementa la confianza entre las personas del equipo
+
+2)Seguimiento: Podemos ver cuanto demora cada una de las tareas en completarse y cuales son las que generan un embudo y no nos permiten avanzar.
+
+3)Flexibilidad: Ante la visualizacion total de las tareas y los responsables, ante algun pedido del cliente, tenemos la flexibilidad de reacomodar las prioridades.
+
+4)Mejora continua.
+
+Ejemplo de tablero de canvan.
+
+Pendiente|  En Proceso| Hecho
+
+En cada una de esas columnas vamos a ubicar las tareas pendiente, en proceso y las terminadas
+
+*Las tarjetas en proceso no pueden volver a pendiente
+
+--------------------------------------------------
+
+3 reglas basicas de Kanvan:
+
+1)Visualizar el trabajo
+2)Medir el tiempo que necesitamos para completar cada tarea
+3)Limitar el WIP (work in progress)

@@ -1,0 +1,9 @@
+Pagina de la biblioteca "https://www.npmjs.com/package/uuid"
+
+
+Para instalar e importar el uuid
+
+1)yarn add uuid: instalamos la biblioteca
+
+2)import {v4 as uuidv4} from 'uuid'
+--

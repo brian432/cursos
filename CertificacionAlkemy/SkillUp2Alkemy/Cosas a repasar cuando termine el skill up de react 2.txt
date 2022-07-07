@@ -1,0 +1,5 @@
+1)Formik  V
+2)Motion-Framer 
+3)Yup  V
+4)Postman (hacer formulario y chequear su funcionamiento enviando post y get en api de moviedatabase)
+5)fetch post

@@ -1,0 +1,92 @@
+************ Cuando solicitamos un objeto json, el console.log(datos) solo tiene que funcionar dentro del la peticion, fuera de ella puede ser que no funcion pero eso no es importante, luego al renderizarse la app, funcionara********
+
+
+Objeto json serializado y desserializado:
+
+1)Las propiedades de los objetos json, van siempre entre comillas:
+
+const objetoJson= {"nombre":"Carlos", "edad":20};
+
+2)Hay 2 formas de encontrarnos con un objeto json:
+
+const objetoJson1={"nombre":"Carlos", "edad":20}; Deserializado
+
+const objetoJson2='{"nombre":"Carlos", "edad":20};' Serializado ('...')
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Serializado:
+
+Cuando enviamos un dato debemos enviarlo de manera serializada. Es decir que si tenemos un objeto json deserializado con datos que necesitamos enviar a algun servidor, antes de enviarlo primero debemos serializarlo con el siguiente metodo. JSON.stringfy()
+
+const deserializado={"nombre":"Carlos", "edad":20};
+
+const serializado= JSON.stringfy(deserializado);
+
+------------------------------------------------
+
+Deserializado:
+
+Cuando recibimos un objeto Json, lo recibimos de la misma forma en que enviamos, el objeto Json va a estar serializado, es decir entre comillas simples. Para poder utilizar esos datos que recibimos debemos volverlo a convertir en un objeto deserializado. Esto lo hacemos mediante el metodo:  JSON.parse()
+
+const serializado='{"nombre":"Carlos", "edad":20}'; asi recibimos el objeto
+
+const deserializado=JSON.parse(serializado); asi lo volvemos a transformar en json deserializado para poder utilizarlo.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Como acceder a un objeto json desde javascript utilizando Ajax
+
+const req = new XMLHttpRequest();
+req.open("GET",'/json/cats.json',true);
+req.send();
+req.onload = function(){
+  const json = JSON.parse(req.responseText);
+  document.getElementsByClassName('message')[0].innerHTML = JSON.stringify(json);
+};
+
+Aquí hay una revisión de lo que está haciendo cada pieza. El XMLHttpRequestobjeto JavaScript tiene una serie de propiedades y métodos que se utilizan para transferir datos. Primero, XMLHttpRequestse crea una instancia del objeto y se guarda en la req variable. A continuación, el open método inicializa una solicitud; este ejemplo solicita datos de una API, por lo tanto, es una GET solicitud. El segundo argumento open es la URL de la API de la que solicita datos. El tercer argumento es un valor booleano donde lo true convierte en una solicitud asincrónica. El send método envía la solicitud. Finalmente, el onload controlador de eventos analiza los datos devueltos y aplica el JSON.stringify método para convertir el objeto JavaScript en una cadena. A continuación, esta cadena se inserta como texto del mensaje.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+GET:
+
+Otro metodo de solicitar datos externos es utilizar fetch(): Es equivalente a XMLHttpRequest, pero la sintaxis se considera más fácil de entender.
+
+
+fetch('/json/cats.json')
+	.then(response => response.json())
+	.then(data => {
+		console.log(data);
+	})
+
+Como ya sabemos los objetos json obtenidos desde el servidor los recibimos como serializados, es decir como string. 
+
+1)Dentro de fetch ingresamos la direccion del objeto json
+2)Si el pedido (GET) que hace fetch se concreta .then() se inicia, toma el objeto json serializado y lo transforma en un objeto json deserializado mediante el metodo json() (seria el equivalente a JSON.parse(req.responseText);) 
+3)El segundo then toma el objeto json deserializado (data) y dentro del cuerpo de then podemos manipular ese objeto como queramos.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+fetch() con async y await:
+
+Estos dos nuevos conceptos son muy importantes para entender como funcionan las promesas devueltas por fetch() al hacer una peticion al servidor.
+
+
+Para hacer una peticion usando fetch() con async y await procedemos de la siguiente forma:
+
+const boton=document.getElementById("boton");
+
+const json = async ()=>{
+    let peticion= await fetch("data.json");
+    let resultado = await peticion.json();
+    console.log(resultado);
+};
+
+boton.addEventListener("click", json);
+
+1)Primero creamos una constante que va a almacenar un elementon html del typo button
+2)Creamos una funcion asyncrona mediant la palabra reservada async y luego una funcion de flecha.
+3)Creamos una variable que va a almacenar la peticion fetch() con el metodo await (esperar).
+4)Luego creamos otra variable que, si la peticion se cumple, va a obtener la promesa encapsulada y la va a desencapsular con el metodo json()
+5)Por ultimo mostramos en consola los datos pedidos en formato json.
+

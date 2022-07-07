@@ -1,0 +1,266 @@
+Acceso a propiedades de un objeto:
+
+let dog = {
+  name: "Spot",
+  numLegs: 4,
+  sayLegs() {return "This dog has " + dog.numLegs + " legs.";}
+};
+
+dog.sayLegs();
+
+El codigo anterior es correcto, el problema es que si el nombre de la variable que almacena el objeto cambia; cualquier código que haga referencia al nombre original también tendría que ser actualizado. Para evitar ese trabajo y que al cambiar el nombre de la variable tambien se actualicen las referencias utilizamos la palabra clave "this" en vez de la variable objeto de la siguiente forma.
+
+let duck = {
+  name: "Aflac",
+  numLegs: 2,
+  sayName() {return "The name of this duck is " + this.name + ".";}
+};
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+instanceof:
+
+Permite comparar un objeto con un constructor, devuelve true o false basado en si ese objeto fue creado o no con dicho constructor. Se utiliza para saber si el objeto fue creado a partir del constructor. Si es asi devuelve true y si no devuelve false.
+
+let Bird = function(name, color) {
+  this.name = name;
+  this.color = color;
+  this.numLegs = 2;
+}
+
+let crow = new Bird("Alexis", "black");
+
+console.log(crow instanceof Bird); //devuelve true
+
+------------------------------
+Diferentes metodos para chequear si un objeto pertenece a un constructor:
+
+crow instanceof Bird;//Devuelve true si el objeto crow es una instancia de Bird 
+
+Bird.prototype.isPrototypeOf(crow); //Devuelve true si crow tiene el prototype de Bird
+
+crow.constructor===Bird; //Muy parecido a InstanceOf
+------------------------------
+
+Agregar las propiedades de un objeto a un arreglo:
+
+let ownProps = [];
+
+for (let property in duck) {
+  if(duck.hasOwnProperty(property)) {
+    ownProps.push(property);//para almacenar la propiedad del objeto hacemos como esta escrito, para    }			almacenar el valor de la propiedad del objeto editamos lo siguiente. 		}			ownProps.push(duck[i]);
+
+
+console.log(ownProps); //si el objeto duck tiene propiedades, estas se almacenaran en el arreglo ownProps.
+
+
+Este codigo es equivalente al siguiente metodo.
+
+let ownProps=Object.keys(duck);
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Propiedades "prototype" para reducir código duplicado:
+
+En el caso de que una de las propiedades del constructor sea igual para todos las intancias/objetos creados , utilizamos la propiedad prototype. 
+
+function Dog(name) {
+  this.name = name;
+}
+
+Dog.prototype.numLegs=4;//Luego de crear el constructor creamos le agregamos una propiedad por 		        		         //fuera que va a ser comun para todas las instancias. Es decir que todas las 		         		        //instancias creadas a partir del construcro Dog van a tener una propiedad 		                                         //"numLegs" con el valor de 4
+
+let beagle = new Dog("Snoopy");
+---------------------------------------
+
+En el ejemplo anterior estariamos añadiendo las propiedades una por una, para no tener que hacer eso y añadir todas las propiedades por defecto del constructor, vamos a utilizar el codigo siguiente.
+
+Dog.prototype={
+	numLegs:4,
+	numAlas:2,
+	etc....
+}
+
+
+---------------------------------------
+*Estudiar pero no es importante si es confuso*
+Cuando tenemos un prototype creado y se lo asignamos a un nuevo objeto, debemos reescribir la propiedad "constructor" de la siguiente forma
+
+function Dog(name) {
+  this.name = name;
+}
+
+Dog.prototype = {
+  constructor:Dog, //aqui aclaramos que el prototypo pertenece a Dog
+  numLegs: 4,
+};
+
+--------------------------------------
+
+Cuando necesitemos almacenar las propiedades de un objeto constructor en una variable, tanto las propiedades directas(se crean en el constructor) y las indirectas (propiedades prototypes), lo haremos con el siguiente codigo.
+
+let ownProps = [];
+let prototypeProps = [];
+
+for (let property in duck) {
+  if(duck.hasOwnProperty(property)) {
+    ownProps.push(property);
+  } else {
+    prototypeProps.push(property);
+  }
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Herencia:
+
+En el caso de crear dos constructores, un perro y un gato. Los dos van a tener su propio prototypo con la propiedad "numeroDePiernas:4" En ese tipo de casos podemos crear un solo prototypo para los dos constructores con la propiedad "numeroDePiernas" y asi ahorrarnos codigo.
+
+function Perro(){};
+function Gato(){};
+
+function Animal(){};
+
+Animal.prototype={
+    constructor:Animal,
+    numeroDePiernas:4
+};
+
+Perro.prototype=Object.create(Animal.prototype);//El constructor Perro heredara las propiedades de Animal
+Gato.prototype=Object.create(Animal.prototype);
+
+const jose=new Perro();
+
+console.log(jose)
+
+La cosola mostrara un objeto creado con la propiedad numeroDePiernas. Solo queda un paso mas, el codigo como esta funciona perfecto pero el constructor de el objeto Jose sera Animal y no Perro como deberia ser. Para corregir esto solo debemos agregar el siguiente codigo.
+
+Perro.prototype.constructor=Perro;
+Gato.prototype.constructor=Gato;
+
+//Ahora el constructor de Jose sera Perro.
+
+-----------------------------------------
+
+Luego de crear un prototypo padre para los constructores Perro y Gato. Tambien podemos agregar prototypos exlusivos de cada constructor de la siguiente forma.
+
+Perro.prototype.numeroDeBigotes=4;
+
+Ahora todos los objetos creados a partir del constructor Perro tendran las propiedades del prototypo Animal y las propiedades del prototype Dog. 
+
+//***La forma de agregar muchas propiedades no funciona si probasemos el siguiente codigo, anularia la herencia de animal,
+
+Perro.prototype={
+   numeroDeBigotes:4
+};
+//***Al imprimirlo en la consola las propiedades del prototypo se sobreescribirian. solo funciona como en el ejemplo anterior:
+Perro.prototype.numeroDeBigotes=4;
+
+--------------------------------------
+
+En el caso de querer sobreescribir una propiedad del prototypo padre a partir del prototypo hijo, solo debemos escribir el nombre de la propiedad y darle otro valor.
+
+Perro.prototype.numeroDePiernas=5; //tan simple como eso.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utiliza un "mixin" para añadir un comportamiento común entre objetos no relacionados:
+
+A veces necesitamos una sola propiedad comun para dos objetos que no estan relacionados ejemplo: en el caso del perro y del gato son dos animales con muchas coincidencias, pero si tenemos un pajaro y un avion, la unica coincidencia es que los dos vuelan. En estos casos hacer una herencia con un prototypo padre seria mucho codigo para tan solo una coincidencia. Para estos casos existen los mixins:
+
+
+const volar = function(obj) {
+  obj.fly = function() { 
+    console.log("estoy volando");
+  }
+};
+
+const pajaro={
+    nombre:"carlos",
+    patas:2
+}
+
+const avion={
+    turbinas:2,
+    velocidadMaxima:600
+}
+
+
+volar(pajaro);
+volar(avion);
+
+//ahora podremos usar la funcion fly() estara presente como propiedad de los dos objetos.
+
+console.log(pajaro.fly())//los dos imprimiran en la consola "estoy volando"
+console.log(avion.fly())
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utiliza closures para evitar que las propiedades de un objeto se puedan modificar desde fuera:
+
+Temos un objeto con la propiedad/varibale "numeroDePiernas:4" muy facilmente alguien puede cambiar el valor de esa propiedad de la siguiente forma.
+
+function Perro(){ //constructor
+    this.numeroDePiernas=4;
+}
+
+let firulais=new Perro(); //objeto hereda de constructor
+
+firulais.numeroDePiernas=12;
+
+console.log(firulais)//En la consola mostraria el objeto firulais tiene la propiedad/variable numeroDePiernas=12.
+
+Para que esto no suceda, en el caso de tener informacion que necesitamos ocultar o que no se modifique, podemos utilizar "closures" de la siguiente forma en el constructor.
+
+function Perro(){ //constructor
+    let numeroDePiernas=4;
+    this.getNumeroDePiernas=function(){
+	return numeroDePiernas;
+    };
+};
+
+let firulais=new Perro();
+
+Ahora podremos acceder a la propiedad/variable mediante el metodo getNumeroDePiernas pero esta no puede ser modificada como lo hicimos antes.
+
+console.log(firulais.getNumeroDePiernas());
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+funciones que son invocadas inmediatamente (IIFE):
+
+Se utilizan cobinados con los mixins:
+
+(function () {
+  console.log("Chirp, chirp!");
+})(); //este es la sintaxis de una funcion iife
+
+---------------------------------
+
+Creando un modulo de mixins
+
+        let avion={};
+        let pajaro={};
+        
+        
+        
+        let modulo = (function () {
+            return {
+                arrancar: function (obj) {
+                    obj.arrancamos = function () {
+                        console.log("Salimos del angar");
+                    };
+                },
+
+                volar: function (obj) {
+                    obj.volamos = function () {
+                        console.log("estoy volando");
+                    };
+                }
+            }
+        })();
+
+        modulo.arrancar(pajaro);
+
+        pajaro.arrancamos();
+
+        //hicimos exactamente los mismo que aprendimos en la leccion de mixins solo que ahora en vez de un solo mixxins tenemos muchos. dentro del modulo.
+         
+    

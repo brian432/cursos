@@ -1,0 +1,177 @@
+Para renderizar un elemento de React en un nodo raíz del DOM, pasa ambos a ReactDOM.render():
+
+const element = <h1>Hello, world</h1>; = elemento react
+
+ReactDOM.render(element, document.getElementById('root'));
+
+
+------------------------------------------------------------------------
+
+Tipos de componentes:
+
+Componente funcional:
+
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+
+const Welcome(props){
+  return <h1>Hello, {props.name}</h1>;
+}
+-----------------------------------------------------
+
+Componente de Clase:
+
+class Welcome extends React.Component {
+  render() {
+    return <h1>Hello, {this.props.name}</h1>;
+  }
+}
+--------
+Componente de clase con estado:
+
+class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {date: new Date()};
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Hello, world!</h1>
+        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+      </div>
+    );
+  }
+}
+------------------------------------------------------------------------------------------------
+componentDidMount() y componentWillUnmount() 
+
+class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {date: new Date()};
+  }
+
+  componentDidMount() { 1)Cada un segundo llamamos a la funcion tick()
+    this.timerID = setInterval(
+      () => this.tick(),
+      1000
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID); 3) Si el componente es eliminado del dom, component Will Un Mont desmonta
+  }			el temporizador del dom.										
+
+  tick() { 2)tick() actualiza el estado del componente con la hora exacta
+    this.setState({
+      date: new Date()
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Hello, world!</h1>
+        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(
+  <Clock />,
+  document.getElementById('root')
+);
+
+
+// Para actualizar el estado de un componente, utilizar this.setState()
+
+----------------------------------------------------------------------------------------------
+
+Agregando escuchadores de eventos en react:
+
+class Toggle extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {isToggleOn: true};
+
+    // Para que una funcion sea utilizable, debemos agregarla primero dentro del constructor de la siguiente manera
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState(prevState => ({ 1)
+      isToggleOn: !prevState.isToggleOn
+    }));
+  }
+
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        {this.state.isToggleOn ? 'ON' : 'OFF'}
+      </button>
+    );
+  }
+}
+
+ReactDOM.render(
+  <Toggle />,
+  document.getElementById('root')
+);
+-----
+1)prevState es solo un nombre, puede ponerse cualquier otro en su lugar. prevState hace referencia al estado antes de ser actualizado. es decir al estado previo a la actualizacion. Ejemplo:
+
+
+state = {
+   count: 0
+}
+updateCount = () => {
+    this.setState({ count: this.state.count + 1});
+    this.setState({ count: this.state.count + 1});
+    this.setState({ count: this.state.count + 1});
+    this.setState({ count: this.state.count + 1});
+}
+//En el ejemplo anterior, el resultado de state seria 1; state=0, la actualizacion con setState siempre hace referencia al estate=0 y le suma 1. En cambio, agregandole un argumento a setState, indicamos que el estado previo a ser actualizado sea actualizado, al terminar el ejemplo siguiente, state=4
+updateCount = () => {
+    this.setState(prevstate => ({ count: prevstate.count + 1}));
+    this.setState(prevstate => ({ count: prevstate.count + 1}));
+    this.setState(prevstate => ({ count: prevstate.count + 1}));
+    this.setState(prevstate => ({ count: prevstate.count + 1}));
+}
+
+
+-------------------------------------------------------------------------------------------
+
+Formas para no renderizar un componente.
+
+function WarningBanner(props) {
+  if (!props.warn) {
+    return null;
+  }
+  return (
+    <div className="warning">
+      Warning!
+    </div>
+  );
+}
+
+
+.....render() {
+    return (
+      <div>
+        <WarningBanner warn={this.state.showWarning} />
+        <button onClick={this.handleToggleClick}>
+          {this.state.showWarning ? 'Hide' : 'Show'}
+        </button>
+      </div>
+    );
+  }
+
+Si las propiedades enviadas al componente, son igual a false, el componente no se renderiza. se puede utilizar .length para las propiedades enviadas en forma de [ ]
+
+
+------------------------------------------------------------------------------------------
+

@@ -1,0 +1,105 @@
+React Router paso a paso:
+
+1)Luego de instalar react router en el proyecto, vamos a "index.js" e importamos BrowserRouter y lo colocamos envolviendo a nuestra App
+
+  <React.StrictMode>
+      <BrowserRouter>
+           <App />
+      </BrowserRouter>
+  </React.StrictMode>
+
+2)Vamos a "App.js" e importamos Routes, Route.
+
+  Routes: Va a ser el que envuelva nuestros componentes excluyendo a los que quereamos que siempre aparezcan en la vista de nuestra App como es el caso del footer y el header u otros componentes que creamos conveniente que siempre aparezcan visibles.
+  
+  Route: va a ser el contenedor de nuestros componentes. De entrada, necesita 2 propiedades; path: que va a ser el que contenga la ruta que mostraremos en el navegador; element: que va a ser el que contenga nuestro componente dentro. 
+
+Ejemplo: 
+
+return (
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/listado" element={<Listado />} />
+        <Route path="/detalle/:id" element={<Detalle />} /> //
+      </Routes>
+      <Footer />
+    </>
+  );
+
+De esta forma vamos a iniciar nuestro proyecto.
+
+***///**** Siempre debemos crear una ruta que haga coincidencia cuando se ingrese una ruta inexistente. Para hacer esto lo logramos de la siguiente forma.
+
+<Route
+      path="*" //Si no hay conincidencia, devolvemos lo que hay en la propiedad element.
+      element={
+        <main style={{ padding: "1rem" }}>
+          <p>Aqui no hay nada!</p>
+        </main>
+      }
+/>
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Etiquetas de React Router y su funcion.
+
+<Link>: Funciona como la etiqueta de enlace <a> de html, en vez de la propiedad "href" va la propieda "to"
+Se utiliza para enlazar los componentes, al hacer click en estos enlaces, la App nos redireccionara a otro componente. Ejemplo <Link  to="/home">Home</Link>
+
+<NavLink>: Es similar a Link pero se utiliza para los enlaces del header por ejemplo, al hacer en un navlink, nos enviara al componente indicado en el header.
+
+<Navigate>  = Redirecciona a otra ruta, funciona como <Link> pero no es necesario hacerle click, solo al cargarse el componente que contiene esta etiqueta, automaticamente redireccionara la  app hacia la ruta especificada dentro de su propiedad "to"
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Metodos de React Router y sus funciones:
+
+useNavigate: Funciona para redireccionar a otra ruta, este metodo lo podemos utilizar dentro de una funcion, al llamarse esta funcion podemos redireccionar la App hacia otro componente.
+
+
+Ejemplo de su uso:
+Tenemos un formulario de inicio de sesion, para redireccionar a otro componente luego de loguearse podriamos utilizar <Link /> como boton de logueo, pero esto nos redireccionaria a otro componente independientemente de si el logueo es correcto o no, en cambio con useNavigate() podemos redireccionar al siguiente componente una vez el logueo sea correcto, lo podemos utilizar en una funcion de validacion.
+
+Siempre debemos crear una variable que contenga a useNavigate() para luego referenciarla dentro de una funcion.
+
+const history=useNavigate();
+
+luego utilizamos la variable history('/componente', {replace:true})
+
+-------------
+
+useParams(): Esta explicacion es mas facil con un ejemplo.
+
+Cuando necesitamos que una ruta coincida con muchos patrones, debemos utilizar el siguiente ejemplo:
+
+<Route path="/componente/:id" element={<Componente />} /> Como vemos en el ejemplo, detro de la propiedad "path" luego de la ruta, agregamos ":" y un nombre cualquiera, en este ejemplo colocamos id.
+
+Luego, en algun lugar de nuestra App, va a haber un <Link> (o muchos) como el siguiente 
+<Link to="/componente/36"/> o  <Link to="/componente/anibal"/> cualquiera sea el caso, estos <Link> nos redireccionara hacia el elemento <Componente />
+
+El ":id" lo podemos obtener mediante el metodo useParams() de la siguiente forma.
+
+const {id}=useParams(); dentro de la variable "id" vamos a almacenar 36 o anibal, se cual sea la ruta a la que nos redireccione el <Link>
+
+----------------
+
+useLocation(): Esta funcion de React Router devuelve un objeto con la ubicacion actual. Esto puede ser útil si desea realizar algún efecto secundario cada vez que cambie la ubicación actual, es decir, cada vez que cambie la ruta de la url.
+
+1)El objeto devuelto y sus propiedades es el siguiente:
+
+{
+	pathname: '/login', 
+	search: '', 
+	hash: '', 
+	state: null, 
+	key: '68j2l2mf'
+}
+
+2)Al igual que useNavigate() y useParams(), debemos asignarlos a una constante
+
+const location=useLocation();
+
+3)Si necesitamos hacer algo cada vez que cambie la ruta en nuestro proyecto, podemos utilizar la siguiente referencia en nuestra funcion que haga ese efecto secundario. "location.pathname" pathname hace referencia a la ruta actual.
+

@@ -1,0 +1,183 @@
+Git
+
+Git trabaja con 4 "carpetas" 3 locales y una remota. Las locales son:
+
+1)Working directory: Esta carpeta es en la que estamos trabajando, es la que vemos en el visual studio code.
+
+2)Staging area: Esta carpeta es en la cual vamos a ir separando los archivos que vamos modificando y queremos guardar mas adelante en la base de datos. 
+
+3)local repo: Es la base de datos que almacena las actualizaciones del proyecto. Todo lo que hayamos guardado en la carpeta staging area lo pasaremos hacia el repositorio local. Los archivos modificados que no esten en la carpeta staging area, no seran almacenados en la base de datos. 
+
+Y la remota es:
+
+1)Remote repo: en esta carpeta que esta en internet, guardaremos las versiones de nuestro proyecto que esten almacenadas en el repositorio local, es decir que es una base de datos pero en internet.
+
+-------
+Que es HEAD
+
+HEAD es la ultima version, es decir, el ultimo commit subido al repositorio local. Cuando, con un comando, hagamos referencia a HEAD, nos estaremos refiriendo a la ultima version commitada del proyecto
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+Comandos Git
+
+Configurar mi usuario.
+
+git config -- global user.name "Brian Cabrera"
+
+git config -- global user.email brian@....com
+--------
+
+git init: inicializar un repositorio en una carpeta
+
+git clone https://....: copiar un repositorio desde github u otros.
+
+git status: te informa los cambio que hiciste en el "working directory" y si los queres almacenar en el "Staging area"
+
+git log: Te muestra el historial de cambios. Te muestra, en consola, todos los commits que se fueron subiendo, y los cambios que se produjeron entre commits.
+
+-------
+Agregar archivos
+
+git add file1 file2 file3: agregar archivos de 1 en 1
+
+git add -A: Agregar todos los archivos modificados
+
+git add -p: aceptar un consejo para no agregar cambios que no querian
+
+git add . : Agregar los archivos modificados en la carpeta
+
+git commit -m "titulo informativo de los cambios a guardar": pasa los cambios echos en el "Staging Area" a la base de datos (local repo), de esta forma actualiza la version del proyecto, indicandole un nombre descriptivo con los cambios que se hicieron.
+
+git push origin master: Actualiza el repositorio en internet (remote repo), con los cambios echos en el repositorio local. Es decir que sincroniza las versiones del proyecto que esta almacenado en el repositorio local con el repositorio remoto.
+
+------
+Eliminar una rama
+
+1)git checkout master: nos paramos en la rama principal
+2)git branch -d ramaAEliminar
+3)git branch -D ramaAEliminar
+
+Eliminar los cambios de un archivo
+
+git checkout -- file: cuando modificamos un archivo y no lo pasamos a la "Staging area" podemos devolverlo al estado anterior, que es el que esta guardado en la base de datos, mediante este comando.
+
+
+Eliminar un archivo
+
+Si eliminamos un archivo con click derecho y luego eliminar, el cambio no se producira en el "Staging area" para hacer esto debemos escribir el siguiente comando.
+
+git rm file: elimina un archivo y agrega el cambio al "Staging area"
+
+Si nos arrepentimo de eliminar ese archivo y queremos recuperarlo, escribimos el siguiente comando.
+
+git reset HEAD file: de esta forma restauramos el archivo y luego lo volvemos a agregar al "Staging area" mediante: 
+
+git checkout file
+------
+
+Formas de volver hacia atras en la version de un proyecto.
+
+1)Ponemos el comando "git log" para que nos muestre los commits
+
+2)Buscamos el commit al cual queremos que nuestro proyecto vuelva
+
+3)Copiamos el codigo del commit (ejemplo: 41648085d8094106ef99f5f8508eef3fb318f4ba)
+
+4)Y luego ponemos el comando "git checkout 41648085d8094106ef99f5f8508eef3fb318f4ba"
+
+De esta manera, en nuestro "Working directory" nos apareceran los archivos modificados hasta la version del commit solicitado.
+
+*Consejo*
+
+Siempre crear nuevos commits para modificar u/o eliminar commits anteriores, sea en el repositorio local (local repo) o el remoto (remote repo).
+
+--------------------
+
+git diff: provee un formato estandarizado que muestra una comparación entre dos puntos diferentes de la historia, permitiendo analizar línea a línea cuáles fueron los cambios introducidos.
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Branches (ramas):
+
+En el repositorio remoto, como ya vimos, tenemos una rama principal que es donde vamos a ir almacenando los cambios que le vamos haciendo al proyecto. Cuando trabajamos en grupo, vamos a necesitar hacer cambios que pueden entrar en conflicto (causar problemas) con los cambios que van haciendo nuestros compañeros en la rama principal. Para evitar esto, podemos crear otra rama paralela, en la que vamos a ir almacenando los cambios, y luego, cuando esos cambios esten terminados podremos ver como mezclarlos con la rama principal sin que estos cambios causen problemas.
+
+----------
+
+Comandos para crear ramas:
+
+git branch nombreDeLaRama: De esta forma creamos una nueva rama. El nombre debe describir lo que se esta realizando en esa nueva rama
+
+git checkout  nombreDeLaRama: Luego de crear la rama, debemos ubicarnos en ella con este comando. Siempre podemos chequear sobre que rama estamos trabajando con git status
+
+Hay una forma de crear una rama y ubicarnos sobre ella en un solo comando:
+
+git checkout -b nombreDeLaRama: este comando dice que nos paremos sobre la rama referenciada y, sino existe, la va a crear 
+
+----------
+
+Una vez terminado el trabajo en la nueva rama creada, queremos mezclarlo con la rama principal, para hacer esto, vamos a nuestro repositorio remoto, cuando nos posicionemos en el proyecto hacemos los siguiente:
+
+1) Vamos a la rama en la que hicimos los cambio
+2)Hacemo click en "Contribute" y apretamos el boton "open pull request"
+3)En la nueva ventana que nos aparece, dejamos un titulo con la etiqueta de trabajo que se nos asigno que resolvimos, y debajo agregamos una descripcion de lo que hicimos. podemos adjuntar una captura de pantalla.
+4)A la derecha del cuadro de comentarios, nos aparece "Reviewers" ahi seleccionamos al usuario que va a hacer la revision del cambio y la correcion.
+5)Una vez revisado el codigo, el mentor de desarrollo nos va a dar el ok y nosotros debemos fusionar las ramas mediante  el boton "merge pull request"
+
+Una vez echo esto, podremos eliminar la rama creada.
+
+---------
+
+Que es merge:
+
+Merge es una fusion de la rama paralela, creada para que trabajemos, y la rama principal. Cuando hagamos click en "merge pull request" vamos a la flechita del boton y seleccionamos "Squash and merge".
+Lo que hace esto es mezclar los commits subidos a la rama paralela dejando un solo commit para mezclar con la rama principal.
+
+---------
+
+Luego de fusionar las ramas en el repositorio remoto, debemos tambien fusionarlas en el repositorio local.
+Para hacer esto debemos escribir el siguiente comando.
+
+git checkout ramaPrincipal
+git pull origin ramaPrincipal
+
+--------
+
+Conflictos al mergear:
+
+Supongamos que tenemos un ticket de crear una funcion cualquiera, creamos la funcion y la vamos a mergear de nuestra rama a la rama principal, cuando hacemos el "pull request" vemos que en la rama principal ya se creo esa funcion, es decir que un compañero nuestro ya hizo ese trabajo pero lo hizo mal. Al hacer "pull request" el repositorio remoto nos avisara de que hay un conflicto, es decir que si mezclamos las dos ramas ocurrira un error en el codigo. Para resolver esto, siempre debemos hacerlo en el repositorio local.
+
+1)git checkout ramaPrincipal: nos ubicamos en la rama principal.
+2)git pull origin ramaPrincipal: actualizamos nuestra ramaPrincipal con la ramaPrincipal del directorio remoto
+3)Vemos donde esta el problema en la ramaPrincipal y nos comunicamos con el compañero que escribio esa linea de codigo que suponemos que esta mal. Debatimos cual de las dos versiones de la funcion es la correcta y luego la modificamos.
+4)git checkout ramaSecundaria: nos ubicamos en la rama en la que creamos esa funcion
+5)git merge ramaPrincipal: Ahora mezclamos la ramaPrincipal, actualizada con el cambio que hizo nuestro compañero, y la ramaSecundaria en la que hizos nuestra funcion. git nos advertira del mismo conflicto que nos advirtio en el repositorio remoto, igual mergeamos y resolvemos el problema
+6)git status: para ver lo que resolvimos
+7)git add . : guardamos los cambios en el "Staging area"
+8)git commit -m "titulo descriptivo de los que hicimos": guardamos los cambios en el el repositorio local
+9)git push origin ramaSecundaria: subimos los cambios en el repositorio remoto.
+10)Volvemos a hacer el pull request.
+
+
+-------------------------------
+Comando para cuando al mergear, haya muchos conflictos que no sabemos solucionar.
+
+git merge --abort
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Consejos:
+
+1)Siempre hacer "git pull origin ramaPrincipal" antes de crear una ramaSecundaria de trabajo
+
+2)git add -p antes que git add . o git add -A para evitar subir codigo no deseado
+
+3)Nombre de commits en ingles y con textos que ayuden a entender los cambios
+
+4)Commits pequeños con buenos nombres para entender los cambios que se hicieron
+
+5)Si hay un conflicto y no se resuelve de manera obvia, pedir ayuda al autor del cambio con el que se entro en conflicto
+
+Gitflow es un modelo alternativo de creación de ramas en Git en el que se utilizan ramas de función y varias ramas principales. Fue Vincent Driessen en nvie quien lo publicó por primera vez y quien lo popularizó. En comparación con el desarrollo basado en troncos, Gitflow tiene diversas ramas de más duración y mayores confirmaciones. Según este modelo, los desarrolladores crean una rama de función y retrasan su fusión con la rama principal del tronco hasta que la función está completa. Estas ramas de función de larga duración requieren más colaboración para la fusión y tienen mayor riesgo de desviarse de la rama troncal. También pueden introducir actualizaciones conflictivas.
+

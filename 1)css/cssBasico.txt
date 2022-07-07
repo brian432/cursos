@@ -1,0 +1,94 @@
+Declarar variable CSS : --nombre:valor;
+Asignar variable:  propiedad:var(--nombre);
+
+Declarar variable SCSS:  $nombre:valor;
+Asignar variable: propiedad:$nombre;
+
+----------------------------------------------------------
+
+Propiedades:
+
+
+TEXT-DECORATION:underline color; subrayado.
+	       :line-through; tachado.
+
+TEXT-TRANSFORM:lowercase; minuscula.
+	      uppercase; mayuscula.
+	      capitalize; primer letra mayuscula.
+
+----------------
+
+POSITION:relative; desplazamiento desde su posición original mediante top, left, rigth, bottom.
+Los demas elementos no seran afectados al cambiar la posicion del elemento que tenga la propiedad position:relative; es decir que se va a superponer encima de los elementos que estan alrededor si cambiamos alguna de las 4 propiedades de direccion.
+
+POSITION:absolute; desplazamiento a partir de los bordes del bloque html. Para que tome como referencia los bordes del contenedor en ves del elemento html, debemos colocarle "position: relative" al contenedor.
+
+POSITION:sticky; En el caso de marcarle un top:10px; el elemento se mantendra en su posiscion hasta que hagamos scroll hacia abajo, cuando hagamos scroll hacia abajo el elemento seguira apareciendo fuera de su contenedor siempre a 10px del top.
+
+POSITION:fixed; fija el elemento en la pantalla, siempre se mostrara.
+
+-------------------------------------------------
+
+FLOAT:left;
+            right;
+            inline-start;
+            inline-end;
+Un elemento declarado con la propiedad float, hace que ese elemento flote en el contenedor padre. ejemplo:
+
+Tenemos un contenedor con dos elementos dentro, uno es un <h1> y el otro es un <p>. el <h1> estara posicionado arriba del <p>. mediante float le podemos decir que posicione el <h1> a la izquierda del <p>. el parrafo se ubicara a la derecha del <h1> y por debajo.
+
+
+-----------------------------------------------
+
+Escalar un elemento:
+
+p {
+  transform: scale(2); tamaño
+}
+
+transform: skewX(25deg); Inclina el elemento de forma horizontal.
+skewY(25deg):inclina el elemento de forma vertical. 
+
+
+transform: translate(10px, 10px): primer argumento eje x, segundo argumento eje y
+
+
+--------------------------------------------------------------------------------
+
+DISPLAY FLEX
+
+Propiedades para elementos contenedores.
+
+Cuando declaramos un contenedor flexible los elementos cambiaran su tamaño predeterminado y se amontonaran para ocupar una sola fila. Si utilizamos la propiedad flex-wrap podemos cambiar esto haciendo que el contenedor flexible respete los tamaños de su elementos y desplaze hacia una nueva fila o columna a los que no entren.
+
+flex-wrap:wrap;desplaza los elementos que no entran a otra fila o columna
+               wrap-reverse; hace lo mismo pero los cambia de posicion
+
+-----------
+Porpiedades para elementos hijos de contenedor flex.
+
+flex-shrink:1/9; La propiedad flex-shrink permite escalar los elementos cuando el tamaño del contenedor es menor a la suma del tamaño de los elementos hijo.
+
+flex-grow:1/9; lo mismo pero con el efecto contrario.
+
+flex-basis:10px; Especifica el tamaño inicial del elemento antes de que CSS haga ajustes con flex-shrink o flex-grow.
+
+Las tres propiedades anteriores las podemos resumir en la propiedad flex.
+
+flex:flex-grow flex-shrink flex-basis;
+
+--------------
+
+Diferencias entre align-content y align-items:
+
+align-items: determina como los elementos en su conjunto están alineados dentro del contenedor
+
+align-content: determina el espacio entre las líneas
+
+-------------------------------------------------
+
+Display grid:
+
+
+
+

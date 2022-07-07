@@ -1,0 +1,135 @@
+Formik
+
+Instalar e importar formik: 
+
+1)Instalar Formik : yarn add formik
+
+2)importar : import { useFormik } from "formik"
+
+-------------------------------------------------------------------------------------------------------------------------
+Comenzar a usarlo:
+
+1)Creamos una variable que va a almacenar el estado de formik. (Al igual que hacemos con useState(), useNavigate(), useParams()).
+
+	const formik = useFormik({})
+
+2)Dentro del array vacio del hook, vamos a pasarle los valores del formulario y una funcion de envio.
+
+	a) const formik = useFormik({
+		initialValues:{
+			name:"",
+			email:"",
+			password:""
+		},
+		onSubmit: values => {
+			alert(values)
+		}
+	})
+	
+	b)InitialValues: Almacena los valores del formulario
+	   onSubmit: funcion de envio
+
+A medida que vayamos avanzando en la creacion del formulario, nos vamos a encontrar con metodos como el "onSubmit" que se van a hacer muy extensos y sera poco legible. Para corregir esto debemos hacer lo siguiente.
+
+	a)Creamos los metodos y los estados aparte y luego los referenciamos dentro del hook
+
+	const initialValues={
+		name:"",
+		email:"",
+		password:""
+	}
+
+	const onSubmit =values=>{
+		alert(values)
+	}
+
+	const formik = useFormik({ initialValues, onSubmit })
+	//Siempre debemos asignar el hook a una variable debajo de los metodos y funciones creados, 
+	Es decir que const formik = useFormik({...}) debe ir debajo de initialValues y onSubmit
+
+3)Empezamos a crear el formulario
+
+	<form onSubmit={formik.handleSubmit}> ****
+		       <input
+         			id="email"
+         			name="email"
+         			type="email"
+         			onChange={formik.handleChange}*****
+         			value={formik.values.email} ******
+       		       />
+	</form>
+
+Para evitar usar el formik.handleSubmit, formik.handleChange, formik.values.email podemos hacer lo siguiente.
+
+	a)Dentro del objeto formik vienen todos esos metodos, podemos desestrucutar el objeto y 	agregarselos a unas variables
+
+	const {handleSubmit, handleChange, values} = formik
+
+	El codigo quedaria como el siguiente
+	
+	<form onSubmit={handleSubmit}>
+		       <input
+         			id="email"
+         			name="email"
+         			type="email"
+         			onChange={handleChange}
+         			value={values.email} //values.email hace referencia a los valores 					declarados dentro de initualValues//
+       		       />
+	</form>
+	
+
+4)El siguiente paso es crear la validacion de los campos del formulario, por ejemplo, en email debemos decirle que valide con algun pattern y en nombre un minimo de caracteres y un maximo, que campos son requeridos. 
+
+	a)Para hacer esto, vamos a importar la biblioteca "yup" (curso de yup en la misma carpeta que 		este curso)
+
+	b)Luego de importar "yup" y crear la funcion de validacion (validationSchema), la vamos a 		agregar al hook useFormik({})
+		const formik = useFormik({ initialValues, onSubmit, validationSchema })
+
+	c)Ahora agregamos la constante errors a la desestructuracion de formik
+		const {handleSubmit, handleChange, values, errors} = formik
+
+	d)Vamos hasta nuestro formulario y debajo de los inputs y agregamos una renderizacion 		condicional de un div, que va a almacenar los mensajes de errores cuando estos ocurran
+
+	<input
+         		id="email"
+         		name="email"
+         		type="email"
+         		onChange={handleChange}
+         		value={values.email}
+ 	/>
+	{errors.email && <div>{errors.email}</div>} //Si hay un error se renderizara el <div> con 			 el mensaje de error que hayamos indicado con la biblioteca "yup" al envir el formulario
+
+	e)otro metodos y funciones con dentro de el objeto formik:
+
+		1)handleBlur: funcion para cuando quitamos foco del input
+		2)setFieldValue: funcion para actualizar un valor individual de un input
+		3)touched: metodo que maneja cuando sucede el handleBlur
+	los agregamos de la siguiente manera
+
+	<input
+         		id="email"
+         		name="email"
+         		type="email"
+         		onChange={handleChange}
+		onBlur={handleBlur}
+         		value={values.email}
+ 	/>
+	{touched.email && errors.email && <span>{errors.email}</span>}//si hay un error o se produce un 							onblur, se renderizara el <div>
+
+5)Formik trae otra funcion, llamada getFieldProps(), que dentro contiene los eventos, onChange, onBlur, la propiedad value, chequed y otras tantas, esto sirve para ahorrarno unas lineas de codigo
+
+	a)Primero agregamos la funcion a la desestructuracion del objeto formik
+
+	         const {handleSubmit, errors, getFieldProps() } = formik //ya no necesitamos desestructurar 						                                handleBlur,handleChange,values. 						               Todas esas funciones y                                                                                                                     propiedades se guardaran dentro                                                                                                                     de getFieldProps()
+
+	b)Ahora agregamos getFieldProps() dentro del input
+	  
+                          <input
+         		id="email"
+         		name="email"
+         		type="email"
+         		{...getFieldProps("email")} //dentro de los () va el valor del input entre comillas
+ 	         />
+
+*Seguir leyendo la documentacion*
+-------------------------------------------------------

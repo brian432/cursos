@@ -1,0 +1,91 @@
+Extraer valores de un objeto json y almacenarlos en un array:
+
+
+const json = [
+	{
+		"id": "1",
+		"Nombre":"alberto",
+		"Apellido":"Fernandez",
+		"Idiomas":["Español", "Frances", "italiano"]
+	},
+	{
+		"id": "2",
+		"Nombre":"alberto",
+		"Apellido":"Fernandez",
+		"Idiomas":[]
+	},
+	{
+		"id": "3",
+		"Nombre":"alberto",
+		"Apellido":"Fernandez",
+		"Idiomas":["Español", "Frances", "italiano"]
+	}
+
+];
+
+let contenido=[];
+json.forEach((elemento, indice)=>{
+	const array=[
+		elemento.Nombre,
+		elemento.Apellido,
+		...elemento.Idiomas | | []  /*Si elemento.Idiomas no existe, devolver un array vacio
+	]			       	
+	contenido.push(array);	       
+});				       
+
+
+1)Dentro de la variable contenido vamos a tener arrays con todos los valores de las propiedades que almacenamos en la variable array. Asi obtendremos en un solo lugar todos los valores de las propiedades que necesitemos extraer del objeto json.
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Filtrar elementos html duplicados dentro de un array:
+
+Si son estaticos, es decir ya tenemos los elementos html dentro de una variable y no se van a agregar mas elementos html dentro de esa variable, procederiamos de la siguiente forma.
+
+let array=[];
+let arraySinDuplicado=[];
+
+const elemento1=document.createElement("button");
+elemento1.innerHTML="hola"
+const elemento2=document.createElement("button");
+elemento2.innerHTML="hola";
+array.push(elemento1, elemento2)
+
+arraySinDuplicado=array.filter(i=>arraySinDuplicado[i]?false:arraySinDuplicado[i]=true);
+
+console.log(arraySinDuplicado)
+
+1)Utilizamos filter en el array que contiene los elementos html. Si el elemento i esta dentro del nuevo array; devuelve false. Si el elemento i no esta dentro del nuevo array; devuelve true
+
+*Recordemos que filter devuelve un nuevo array con los elementos que devuelvan true.
+
+---------------------------------------
+
+Si son dinamicos, es decir que los elementos html se van agregando al array por ejemplo a partir de un evento click, procedemos de la siguiente forma:
+
+1)Si hacemos click en un elemento con la clase "button", llamamos a la funcion tagsInSearch(target) y le pasamos como parametro el elemento al cual se le hizo click*/
+
+window.addEventListener("click", (e)=>{
+    e.preventDefault();
+    let targetEvento=e.target.className;
+    let target=e.target;
+    targetEvento=="button"?tagsInSearch(target):""; 
+});
+
+2)Vamos a ir introduciendo todo el elemento en modo string dentro de esta variable (stringSinDuplicados), luego mediante includes() vamos a verificar que la cadena de texto que ingresemos no exista dentro de la variable. y luego llamamos a la siguiente funcion para agregar todo el string dentro del contenedor search.
+
+let stringSinDuplicados=""; 
+
+function tagsInSearch(target){
+    !arraySinDuplicados.includes(target.outerHTML)?arraySinDuplicados+=target.outerHTML:false;
+    handleTags(stringSinDuplicados);
+};
+
+3)aqui vamos a introducir todo el string dentro de search mediante innerHTML.
+
+function handleTags(arrayTags){
+    search.innerHTML=arrayTags;
+    console.log(search)
+    console.log(arrayTags) 
+}

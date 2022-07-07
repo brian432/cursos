@@ -1,0 +1,124 @@
+Elementos:
+
+<form>: representa una sección de un documento que contiene controles interactivos que permiten a un usuario enviar información a un servidor web. (autocomplete, action, method, name, novalidate, target, )
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+<input> atributos:
+
+type="search": caja de busqueda (autocomplete, list, maxlength, pattern, placeholder, required, size)
+
+type="tel": numero de telefono ( autocomplete, list, maxlength, pattern, placeholder, required, size)
+
+type="url": control para editar una url (autocomplete, list, maxlength, pattern, placeholder, required, size)
+
+type="email": direccion de email (autocomplete, list, maxlength, multiple, name, pattern, placeholder, readonly, required, size, type)
+
+type="number": agregar numeros (autocomplete, list, placeholder, readonly)
+
+type="range": slider de rango de numeros (autocomplete, list, max, min, step)
+
+type="button": boton si un comportamiento especifico (disabled, autofocus, autocomplete, form)
+
+type="checkbox": casilla de seleccion (checked, value, indeterminate)
+
+type="color": control para especificar un color 
+
+type="date": ingresar año, mes y dia sin tiempo (autocomplete, list, readonly, step)
+
+type="datetime: control para introducir fecha y hora 
+
+type="file": control para seleccionar un archivo local 
+
+type="hidden": control que no es mostrado en 
+pantalla pero cuyo valor es enviao al servidor
+
+type="image": ingresar una imagen al formulario, con atributo src.
+
+type="password": ingresar contraseña (autocomplete, autofous, disabled, defaultvalue, inputmode, maxlength, minlength, name, pattern, placeholder, readonly, required, size)
+
+type="radio": boton radio (checekd, value, required)
+
+type="reset": boton que restaura los contenidos de un formularios  
+
+type="submit": enviar formulario ()
+
+type="text": campo de texto de linea simple (autocomplete, maxlength, minlength, pattern, placeholder, readonly, required)
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+<label>: representa una etiqueta para un elemento en una interfaz de usuario. (for, acceskey)
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+<fieldset>: El elemento fieldset (grupo de campos) permite organizar en grupos los campos de un formulario. (title, style)
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+<textarea>: El elemento HTML <textarea> representa un control para la edición mutilínea de texto sin formato. (autocapitalize, autocomplete, autofocus, cols, disabled, maxlength, minlength, name, placeholder, readonly, required, rows)
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+<select>: El elemento select (<select>) de HTML representa un control que muestra un menú de opciones. Las opciones contenidas en el menú son representadas por elementos <option>, los cuales pueden ser agrupados por elementos <optgroup> (en-US). La opcion puede estar preseleccionada por el usuario. (autofocus, disabled, form, multiple, name, required, size)
+
+
+   <option>: e usa para representar un item dentro de un <select>, un  <optgroup> (en-US) o un  elemento HTML5 <datalist> . (9
+
+  <outpgroup>: crea una agrupación de opciones dentro de un elemento <select>.
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+Atributos comunes: 
+
+autocomplete: el valor de esta propiedad indicar si puede ser completado automaticamente por el navegador.
+    "off": El usuario debe explicitamente introducir un valor en este campo
+    "on": Se permite autocompletar con datos almacenados en el navegador.
+    "name": Nombre completo.
+    "honorific-prefix": Prefixo o titulo ("Sr.", "Sra.", "Dr.", "Srita.").
+    "given-name": Nombre de pila.
+    "additional-name": Segundo nombre.
+    "family-name": Apellido.
+    "honorific-suffix": Sufijo ("Hijo", "Señor", "II")
+    "nickname": Apodo.
+    "email": Correo electrónico.
+    "username": Nombre de usuario.
+    "current-password": contraseña actual.
+    buscar todos en mozzilla.
+
+maxlength: Especifica el numero maximo de caracteres 
+
+minlength: especifica la longitud mínima de caracteres
+
+pattern: Una expresión regular contra la que el valor es evaluado. El patrón debe coincidir con el valor completo, no solo una parte.
+
+placeholder: Una pista para el usuario sobre lo que puede introducir en el control.
+
+readonly: Este atributo indica que el usuario no puede modificar el valor del control.
+
+required: Este atributo especifica que el usuario debe llenar el control antes de enviarlo al formulario.
+
+multiple: Atributo booleano, si se establece, significa que el control del formulario acepta uno o más valores.
+
+max: Valor maximo a aceptar para esta entrada
+
+min: Valor minimo a aceptar para esta entrada
+
+checked: se selecciona de forma predeterminada
+
+indeterminate: dibuja una linea horizontal a traves del checkbox
+
+acceskey: Una tecla de atajo para acceder a este elemento desde el teclado.
+
+for: El primer elemento en el documento con tal ID que coincida con el dispuesto en el atributo for será el control etiquetado para este elemento.
+
+method: El método HTTP que el navegador usa para enviar el formulario.
+    "post": los datos del formulario son incluidos en el cuerpo del formulario y son enviados al servidor.
+
+    "get": los datos del formulario son adjuntados a la URI del atributo  action , con un '?' como separador,  y la URI resultante es enviada al servidor. Use este método cuando el formulario no tiene efectos secundarios y contiene solo caracteres ASCII.
+
+target: 

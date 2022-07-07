@@ -1,0 +1,33 @@
+Cuando utilizamos un <input type="search" /> debemos generar el codigo siguiente:
+
+const [search, setSearch]=useState("")
+
+    ...useEffect(()=>{...},[search])
+
+const handleSearch=(event)=>{
+        setSearch(event.currentTarget.value)
+}
+
+    ...
+
+<input type="search" placeholder="Buscar por titulo..." value={search} onChange={handleSearch}/>
+
+Cada vez que ingresemos una letra dentro de <input type="search"/> se actualizara la variable search y se producira un efecto secundario en UseEffect, dentro del useEffect tendremos una peticion a una api. Ejempo: Si escribimos "hola" en el input, se produciran 4 request a la api, esto es innecesario, para evitar esto, viene una metodo llamado debounce.
+
+1)import  debounce  from "lodash.debounce": para importarlo
+
+2)no necesita instalacion 
+
+3)Nuestro codigo quedaria de la siguiente manera
+
+const [search, setSearch]=useState("")
+
+    ...useEffect(()=>{...},[search])
+
+const handleSearch=debounce(event=>{
+        setSearch(event?.target?.value)
+}, 1000)//utilizamos debounce, "1000" hace referencia a los segundos que tardara en actualizar la variable
+
+    ...
+
+<input type="search" placeholder="Buscar por titulo..." onChange={handleSearch}/> //eliminamos el value={search}

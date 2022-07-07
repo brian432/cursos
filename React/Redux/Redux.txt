@@ -1,0 +1,72 @@
+Redux.
+
+Reducer
+
+1)Reducer es una funcion que recibe 2 parametros, el estado actual y una accion, y el retorno de esta funcion es el nuevo estado. Ejemplo:
+
+	const reducer = (state, action)=>newState
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+Action:
+
+1)Las acciones son objetos que almacenan un evento. La accion le dice al reducer como tiene que actualizar el estado
+
+	const action ={
+		type:'@reducer/incremented' 
+	}
+
+	a)La propiedad type es obligatoria, es la encargada de decirle a la funcion reducer lo que tiene que hacer.
+
+Ejemplo simple para entender como funciona reducer y action:
+
+	const reducer=(state, action)=>{
+		if( action.type === "incrementar" ){
+			return state + 1
+		}
+	}
+	
+	const action = {
+		type:"incrementar"
+	}
+
+	reducer(0, action)
+	
+	
+------------------------------------------------------------------------------------------------------------------------------------
+
+Store:
+
+La Store es un objeto que reune las actions y los reducers. Contiene el estado de toda la aplicacion, permite leer y actualizar el estado de la aplicaicion.
+
+Store utiliza una funcion llamada createStore() para poder crear la store
+
+	1)Primero importamos la funcion createStore(): import {createStore} from 'redux'
+		
+
+	2)Creamos el store y como parametro le pasamos el reducer :
+	
+		const store = createStore(reducer)
+
+	3)Ahora debemos pasarle una action al store mediante una nueva funcion llamada dispatch():
+
+		store.dispatch(action) //dispatch despacha la accion en el store.
+
+	
+***al usar store, el reducer recibe la accion mediante dispatch pero no recibe el estado como en los ejemplos anteriores, para solucionar esto debemos declararle un valor por defecto al parametro state del reducer
+	const reducer = (state = 0, action) =>newState
+
+
+-------------
+getState() y subscribe():
+
+Una vez creado el store que va a almacenar el reducer, pasado la accion mediante dispatch(), vamos a querer ver si todo funciona correctamente y la accion cambio el estado dentro de reducer. Para lograr esto se utiliza getState() esto imprime en consola el nuevo estado. Pero no lo hace automaticamente, sino que debemos hacerlo despues de cada dispatch() enviado al store, para evitar esto podemos suscribirnos al store para que cada vez que haya un cambio de estado dentro del store, esta funcion retorne algo Ejemplo:
+
+	store.subscribe(()=>{
+		console.log(store.getState())
+	})
+
+
+	
+	
+

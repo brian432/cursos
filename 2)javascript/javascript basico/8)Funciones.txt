@@ -1,0 +1,478 @@
+Principios de la programacion funcional:
+
+
+1)No alteres una variable u objeto: crea nuevas variables y objetos y devuélvelos, si es necesario, desde una función. Pista: usar algo como var newArr = arrVar, donde arrVar es un arreglo, simplemente creará una referencia a la variable existente y no una copia. Así que cambiar un valor en newArr cambiaría el valor en arrVar.
+
+2)Declara parámetros de función: cualquier cálculo dentro de una función depende sólo de los argumentos pasados a la función y no en ningún objeto o variable global. *Crear  funciónes que solo depende de sus argumentos de entrada.*
+
+3)En las funciones de flecha, cuando la funcion va a retornar solo un valor se pueden omitir las llaves y la palabra return, cuando la funcion va a retornar mas de un valor, debemos utilizar las llaves y la palabra return.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Al pasara funciones como argumentos/parametros de una funcion, no se ponen los parentesis.
+
+const prepareTea = () => 'greenTea'; /En el caso de que la funcion sea simple, es decir que retorne un solo 			         /objeto no son necesarias las llaves ni la palabra return. 
+
+const getTea = (numOfCups) => {
+    const teaCups = [];
+
+        for (let cups = 1; cups <= numOfCups; cups += 1) {
+            const teaCup = prepareTea();
+            teaCups.push(teaCup);
+        }
+        return teaCups;
+};
+
+const tea4TeamFCC = getTea(40);
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Mutaciones y efectos secundarios utilizando programación funcional:
+
+
+En el siguiente caso/ejemplo necesitamos que una funcion del programa devuelva el valor de una variable global sumado a 1.
+
+Una forma de hacerlo seria la siguiente.
+
+var fixedValue = 4;
+
+function incrementer () {
+
+  return fixedValue+1;
+};
+
+El problema en este ejemplo seria que le estariamos cambiando el valor a la variable global. Para evitar esto podemos hacer lo siguiente.
+
+var fixedValue = 4;
+
+function incrementer () {
+  const num=fixedValue+1;
+  return num;
+};
+
+//Creamos una variable que almacene el valor de la variable global y le sume 1, el resultado seria el mismo que en el ejemplo anterior pero sin cambiar el valor de esa variable.
+
+Pero ahora solo vamos a poder usar esa funcion con esa variable especificamente. Si quisiesemos hacer el mismo procesos con otra variable global, necesitariamos cambiar su nombre. Para evitar esto, podemos hacer lo siguiente.
+
+var fixedValue = 4;
+
+function incrementer (valor) {
+  return valor+1; 
+};
+
+incrementer(fixedValue);
+
+//Llamamos a la funcion y le pasamos como parametro la variable global. El parametro creado en la funcion, crea una copia del parametro pasado en la llamada de la funcion. De esta forma la variable global no es afectada.*Este ejemplo es un equivalente al segundo ejemplo*
+
+
+
+------------------------------------------
+
+Los casos anteriores fueron ejemplos sencillos de solo aumentar un valor en uno y no modificar la variable global. Ahora lo haremos con un arreglo y siguiendo el principio de no modificar la variable global.
+
+var arreglo=[1,2,3,4];
+
+function suma(num){
+    let nuevoArreglo=[...num]; /Para copiar el arreglo y modificarlo necesitamos desempacarlo.si no lo
+    nuevoArreglo.push(22);     /hacemos, alterariamos el arreglo global. *probar en visualstudiocode para
+    return nuevoArreglo;          /entender mejor*
+};
+
+console.log(arreglo,suma(arreglo));
+
+En la consola imprimira dos arreglos, el arreglo global que fue utilizado pero no alterado [1,2,3,4] y el arreglo que retorna la funcion [1,2,3,4,22]
+
+En alguno casos el ejemplo anterior utilizando push() no funciona (nuevoArreglo.push(22)), otra forma de agregar un elemento al final de un arreglo es utilizar:
+
+concat()= nuevoArreglo.concat(22).
+
+O cuando creamos la copia del arreglo con el desempacado del arreglo podemos agregar otro elemento en esa misma linea de codigo de la siguiente manera.
+
+let nuevoArreglo=[...num, 22]; cumple la misma funcion que concat()
+	
+------------------------------------------------------------------------------------------------------------------------------------------------
+Metodos:
+
+map(): El método map iterará sobre cada elemento de un arreglo y devuelve un nuevo arreglo que contiene los resultados de llamar a la función callback en cada elemento. Esto lo hace sin mutar el arreglo original.
+Ejemplo:
+
+const users = [
+  { name: 'John', age: 34 },
+  { name: 'Amy', age: 20 },
+  { name: 'camperCat', age: 10 }
+];
+
+const names = users.map(user => user.name);
+console.log(names);
+La consola mostraría el valor [ 'John', 'Amy', 'camperCat' ].
+
+1)Tenemos un arreglo que dentro contiene 3 objetos con las propiedades name y edad. Luego tenemos una variable que va a almacenar solo los valores de las propiedades name mediante el metodo map.
+
+2)Dentro de los parametro de map, le pasamos una funcion que, como es simple, dentro de su cuerpo no se requiere de llaves ni de parentesis. 
+
+3)users.map(user...):"user" es igual al primer elemento del arreglo, que en este caso es un objeto, "user" vendria a ser como "i" en un bucle for.
+
+4)users.map(user=>user.name); De ese primer elemento que estamos iterando queremos copiar solo el valor de la propiedad name y guardarlo en el arreglo names.
+
+5)Luego de que termine el paso anterior, al igual que en un bucle for, volvera a iterar sobre el siguiente elemento dentro del arreglo names. y volvera a hacer los mismo.
+
+------------------------------------------------
+
+Para crear un objetos dentro de un arreglo la sintaxis sera un poco diferente.
+
+var peliculas=[{"Titulo":"Titanic", "imbdRating": 8.8, "actorPrincipal":"Dicaprio"},{"Titulo":"Rapido Y furioso", "actorPrincipal":"Vin Diesel", "imbdRating": 6.6},{"Titulo":"Hombre en llamas", "actorPrincipal":"Denzel Washington", "imbdRating": 7.8}];
+
+
+const rating=peliculas.map(item=>({titulo:item.Titulo, rating:item.imbdRating}));
+
+console.log(rating)
+
+1)Item va a ser la variable "i" de un bucle for. 
+2)Para crear un objeto, debemos agregar parentesis antes de las llaves
+3)Luego creamos las propiedades que va a tener nuestro nuevo objeto(titulo y rating) y le pasamos, mediante la notacion de puntos, el valor de las propiedades del objeto que va a almacenar.
+
+*Si la propiedad tiene un espacio ejemplo: "Titulo de pelicula": "Titanic" debemos utilizar la notacion de corchetes, la notacion de puntos no funciona cuando hay espacios*
+----------
+
+Utilizando la desestructuracion de parametros podriamos hacer lo mismo de la siguiente manera:
+
+const rating=peliculas.map(({Titulo:titulo, imbdRating:rating})=>({titulo, rating}));
+
+1)({Titulo:titulo, imbdRating:rating}): A la propiedad Titulo y imbdRating le asignamos los nombres que queramos que tengan dentro del nuevo objeto creado. Ahora titulo va a tener el mismo valor que Titulo y rating va a tener el mismo valor que imbdRating.
+
+2)Luego creamos el objeto que va a almacenar rating.
+
+---------
+
+Si queremos saltearnos los nombres de las propiedades y solo usar valores, ejemplo, queremos tener como resultado este objeto {Titanic: "8.8"} es decir solo el nombre de la pelicula como propiedad y el rating como valor de esa propiedad, podemos hacer los siguiente.
+
+
+const rating = peliculas.map((pelicula => ({ [pelicula.Titulo]:pelicula.imbdRating })));
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+filter(): llama a una función en cada elemento de un arreglo y devuelve un nuevo arreglo que contiene solo los elementos por lo que esa función devuelve true.
+
+La función callback acepta tres argumentos. El primer argumento es el elemento actual que se está procesando. El segundo es el índice de ese elemento y el tercero es el arreglo sobre el que se llamó al método filter.
+
+
+const users = [
+  { name: 'John', age: 34 },
+  { name: 'Amy', age: 20 },
+  { name: 'camperCat', age: 10 }
+];
+
+const usersUnder30 = users.filter(user => user.age < 30);
+console.log(usersUnder30); 
+
+1)filter chequeara los objetos que tengan la propiedad age con el valor menor a 30.
+2)Los objetos que pasen esa prueba seran almacenados en un nuevo arreglo. es decir que filter copiara los objetos enteros no solo sus propiedades.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Ejemplo de uso de map() y filter():
+
+Tenemos un arreglo con objetos dentro que contiene el nombre el apellido y la edad y necesitamos crear otro objeto que contenga solo el apellido y la edad de aquellos que son mayores a 21 años.
+
+const personas=[{nombre:"Alejandro", apellido:"Gonzalez", edad:30},{nombre:"Rosalia", apellido:"Rodriguez", edad:35},{nombre:"Jose", apellido:"Fernandez", edad:18},{nombre:"Mariela", apellido:"Perez", edad:16},{nombre:"Oscar", apellido:"Ruperti", edad:60},{nombre:"Marina", apellido:"Marinari", edad:90}];
+
+const personasMayoresDeEdad=personas.map(({nombre, edad})=>({nombre,edad})).filter(e=>e.edad>=21);
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Metodo slice():
+
+El método slice devuelve una copia de ciertos elementos de un arreglo. Puede tomar dos argumentos, el primero da el índice de dónde comenzar el corte, el segundo es el índice de dónde terminar el corte (y no es inclusivo). 
+
+const arreglo=[1,2,3,4,5,6,7,8,9];
+
+const arreglo_sin_el_9= arreglo.slice(0,8);
+
+console.log(arreglo_sin_el_9); //imprime el siguiente arreglo [1,2,3,4,5,6,7,8];
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+metodo splice():
+
+splice(): Se utiliza para eliminar cualquier número de elementos consecutivos de cualquier parte de un arreglo.
+El primer parámetro de splice() representa el índice del arreglo a partir del cual se empiezan a eliminar los elementos, mientras que el segundo parámetro indica el número de elementos a eliminar.
+
+Los elementos eliminados pueden ser asignados a una variable al igual que pop()
+
+Esta misma funcion tambien se utiliza para agregar elementos, al arreglo utilizado a partir de su tercer argumento.
+
+*Siempre es mejor utilizar el metodo slice por sobre splice, porque este no modifica el arreglo original*
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Metodo concat():
+
+avaScript ofrece el método concat para cadenas y arreglos, que funciona de la misma manera. Para arreglos, el método es llamado desde un arreglo, un segundo arrelgo es proporcionado como argumento de concat, este se añadirá al final del primer arreglo.
+
+[1, 2, 3].concat([4, 5, 6]);
+El arreglo devuelto sería [1, 2, 3, 4, 5, 6].
+
+o en su defecto los nombres de las variables que almacenan el objeto. *no es necesario desempacarlos con [...arr]*
+
+const arr=[1,2,3];
+const arr2=[4,5,6];
+const juntos=arr.conctat(arr2); //[1,2,3,4,5,6];
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Metodo reduce():
+
+El método reduce itera sobre cada elemento del arreglo y devuelve un solo valor (por ejemplo una cadena, número, objeto, arreglo). Esto se consigue mediante una función de callback que se llama en cada iteración.
+
+La función callback acepta cuatro argumentos. El primer argumento se conoce como acumulador, que recibe el valor retornado de la función callback de la iteración anterior, el segundo es el elemento actual que se está procesando, el tercero es el índice de ese elemento y el cuarto es el arreglo sobre el que se llama a la función reduce.
+
+const numeros=[1,2,3,4];
+
+const suma=numeros.reduce((acumulador, valorActual)=>acumulador+valorActual,0);
+
+1)acumulador=es la variable encargada de almacenar la suma de los elementos. Es como si fuese una variable contador dentro de un bucle for o la variable que va a almacenar los elementos utilizados con push() suma va a ser igual a acumulador.
+2)valorActual=Es como si fuese "i" de un bucle for.
+3)acumulador+valorActual es como si fuese contador+=i;
+4)El 0 es el indice desde donde se empieza a iterar el arreglo. En este caso comenzamos despe el primer indice. Si se va a iniciar la iteracion desde el primer indice, no hace falta ponerlo.
+
+-------------------------------------
+
+El ejemplo anterior es un ejemplo sencillo para entender mejor a reduce. En el caso de tener objetos como elementos dentro del arreglo y no numeros, hay una pequeña sintaxis que cambiar. En lugar de 0 como indice desde donde debe comenza, debemos poner {} esto es para referenciar que lo que se va a iterar son objetos.
+
+const users = [
+  { name: 'John', age: 34 },
+  { name: 'Amy', age: 20 },
+  { name: 'camperCat', age: 10 }
+];
+
+const usersObj = users.reduce((obj, user) => { obj[user.name] = user.age; return obj;}, {});
+console.log(usersObj);
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Ejemplo del uso de los tres metodos (reduce(), filter(), map()).
+
+Vamos a buscar la nota media de las peliculas de Cristoper Nolan. 
+--------
+const peliculas = [{ Director: "Cristoper Nolan", Pelicula: "Origen", rating: "8.5" }, { Director: "Cristoper Nolan", Pelicula: "Tenet", rating: "7.5" }, { Director: "James Cameron", Pelicula: "Titanic", rating: "7.3" }, { Director: "Cristoper Nolan", Pelicula: "Memento", rating: "8.1" }, { Director: "James Cameron", Pelicula: "Avatar", rating: "8.5" }, { Director: "James Cameron", Pelicula: "Avatar 2", rating: "9.2" }, { Director: "Tarantino", Pelicula: "Perros de la calle", rating: "8.6" }, { Director: "Tarantino", Pelicula: "Los 8 mas odiados", rating: "7.6" }, { Director: "Tarantino", Pelicula: "Kill bill", rating: "8.0" }];
+
+function rating(peliculas){
+        var mediaRating=peliculas.filter(i=>i.Director=="Cristoper Nolan").map(e=>Number(e.rating)).reduce        ((acumulador,valorActual)=>acumulador+valorActual,0)/peliculas.filter(i=>i.Director=="Cristoper         Nolan").length;
+        
+        return mediaRating;
+};
+
+--------
+
+Tenemos un arreglo con objetos dentro que contiene peliculas con sus directores y las notas de cada pelicula.
+
+1)Utilizamos filter para filtrar por director.
+
+2)Utilizamos map para buscar la propiedad dentro del objeto que contenga los puntajes/rating. Solo necesitamos los valores de la propiedad Rating para introducirlos en un arreglo; no necesitamos la propiedad solo su valor. Si necesitaramos almacenar la propiedad con su valor la sintaxis de map() seria diferente. 
+
+2,1)Utilizamos la funcion Number() para transformar los puntajes que aparecen como unacadena, en numeros.
+
+3)utilizamos reduce para sumar los valores almacenados en el arrelgo que hicimos con map().
+
+4)Encontramos la nota media de las peliculas de Cristoper Nola dividiendo la suma de sus notas por la cantidad de peliculas. utilizando .length.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Ejercicios: 
+
+Nos pasan un arreglo con numero decimales negativos y enteros. Tenemos que devolver un arreglo solo con los numeros positivos y enteros elevados al cuadrado.
+
+
+var numeros=[1.32,12,10,-2.63,8,22];
+
+function resultado(num){
+    return num.filter(i=> Number.isInteger(i)&& i>=0).map(i=> i*i);
+};
+
+1)Primero filtramos lo numeros enteros positivos, lo que va dentro del metodo filter funciona como un "if"
+2)Hacemos un mapeo de los elementos y los multiplicamos por ellos mismos, es decir que los elevamos al cuadrado.
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Metodo sort():
+
+devuelve un un arreglo ordenaod de menor a mayor. Ejemplo:
+
+var arreglo=[1,2,5,4,9,3];
+
+function orden(numeros){
+    const clon=numeros.slice(0);
+    return clon.sort();
+};
+
+console.log(orden(arreglo))// esto imprimiria el siguiente arreglo [1,2,3,4,5,9];
+
+Ordenaria el arreglo, pero sort() solo funciona con unicode, es decir que si los numero tuviese mas de una cifra sort() los seguiria ordenando por su primer numero ejemplo:
+
+var arreglo=[10,28,5000,4,9,360];
+
+function orden(numeros){
+    const clon=numeros.slice(0);
+    return clon.sort();
+};
+
+console.log(orden(arreglo))//el resultado seria el siguiente [10,28,360,4,5000,9];
+
+Para evitar esto podemos hacer los siguiente:
+
+var arreglo=[10,28,5000,4,9,360];
+
+function orden(numeros){
+    const clon=numeros.slice(0);
+    return clon.sort(function(a,b){ return a-b });
+};
+
+console.log(orden(arreglo)) // [4,9,10,28,360,5000];
+
+Como funciona esto? no lo se, pero la sintaxis es esa.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Metodo split():
+
+El método split divide una cadena en un arreglo de cadenas. Se necesita un argumento para el delimitador, el cual puede ser un carácter para separar la cadena o una expresión regular. 
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Metodo join():
+
+
+El método join se utiliza para unir los elementos de un arreglo creando una cadena de texto.
+Se necesita un argumento para especificar el delimitador a utilizar para separar los elementos del arreglo en la cadena.
+
+Ejemplo:
+
+const hola=["hola","como","estas"];
+
+cons chau=hola.join(" ");
+
+console.log(chau)//imprimiria hola como estas
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Metodo trim(): 
+
+Elimina los espacios de una cadena en ambos extremos.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Metodo every():
+
+El método every funciona con arreglos para comprobar si every element pasa una prueba en particular. Devuelve un valor booleano - true si todos los valores cumplen los criterios, false si no.
+
+Ejemplo:
+
+var numeros = [1, 5, 8, 0, 10, 11];
+
+numeros.every(function(num) {
+  return num < 10;
+});
+
+Si lo asignacemos a una variable y lo imprimieramos daria false, porque los primeros 4 elementos no pasan la prueba.
+
+Es parecido a un if con el operador logico &&
+
+-------------------------------------
+
+Metodo some():
+
+
+El método some funciona con arreglos para comprobar si algún elemento pasa una prueba en particular. Devuelve un valor booleano true si alguno de los valores cumple el criterio, false si no.
+
+Es parecido a un if con el operador logico || (or)
+
+------------------------------------
+
+startsWith(): indica si una cadena de texto comienza con los caracteres de una cadena de texto concreta, devolviendo true o false según corresponda.
+
+------------------------------------
+
+metodo Set():
+
+En el caso de tener un arreglo como el siguiente: [1,2,3,4,5,4,6,1,3,2,7,5,8,4,6,1,9,10] y necesitamos eliminar los duplicados, podemos usar este metodo de la siguiente manera:
+
+let arr1=[1,2,3,4,5,4,6,1,3,2,7,5,8,4,6,1,9,10];
+
+let arr2=[... new Set(arr1)];
+
+Al imprimir este codigo, eliminara los duplicados y devolvera el siguiente arreglo [1,2,3,4,5,6,7,8,9,10];
+
+1)Primero desempacamos el arreglo con "..." 
+2)Luego creamos un objeto un nuevo objeto Set y le pasamos como argumento el arreglo a analizar.
+
+---------------------------------
+metodo flat(): crea una nueva matriz con todos los elementos de sub-array concatenados recursivamente hasta la profundidad especificada.
+
+let arr1=[1,2,3,[4,5,6],7];
+
+let arr2=arr1.flat(); Esta variable almacena el siguiente arreglo [1,2,3,4,5,6,7]; 
+
+-----------------------------------
+
+find(): El método find() devuelve el valor del primer elemento del array que cumple la función de prueba proporcionada.
+
+const array1 = [5, 12, 8, 130, 44];
+
+const found = array1.find(element => element > 10);
+
+console.log(found);
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Consejos utiles:
+
+La utilizacion del "!" cuando queramos que algo haga lo contrario:
+
+Tenemos 2 arreglos y necesitamos crear una funcion que retorne los elementos que esten en los dos arreglos, para hacer esto utilizariamos la funcion includes() de la siguiente forma.
+
+function hola(arr1, arr2){
+    let juntos=arr1.concat(arr2);
+    return juntos.filter(i=>arr1.includes(i) && arr2.includes(i));
+
+};
+
+hola([1,2,3,4,8], [1,5,7,8,3,4]);
+
+1)Primero juntamos los dos arreglos en uno utilizando concat()
+
+2)Luego utilizamos filter() para filtrar solo los elementos en el arreglo "juntos" que esten dentro de arr1 y arr2 utilizando la funcion includes().
+
+
+En el caso de necesitar lo contrario, es decir que la funcion retorne solo los elementos que no se repite, los elementos que solo estan en uno de los dos arreglos. La funcion seria la misma solo cambiariamo el operador && por el operador || y utilizariamos el signo "!".
+
+function hola(arr1, arr2){
+    let juntos=arr1.concat(arr2);
+    return juntos.filter(i=>!arr1.includes(i) || !arr2.includes(i));
+
+};
+
+hola([1,2,3,4,8], [1,5,7,8,3,4]);
+
+1)La funcion includes() devuelve "true" si el elemento dentro de sus parentecis se encuentra en el arreglo por el cual es consultada. El signo "!" hace que invierta el resultado. es decir que cuando una funcion que retorna true o false, tiene este signo "!" invierte su resultado. En este caso va a devolver true solo si el elemento no se encuentra en el arreglo.
+
+--------------------------------------------------------------------
+
+Devolver fecha y hora a partir de un numero generado por la api:
+
+const dateTime=new Date(variableDeLaApi).toLocaleString()
+
+
+--------------------------------------------------------------------
+
+Funcion para limitar strings
+
+const limitString =(str)=>{
+	if(str.length > 170){
+		return {string: str.slice(0, 167).concat("..."), addButton:true}
+	}return {string: str, addButton:false}
+}
+
+<p>{limitString(text).string}</p>//le pasamos el texto en la variable text y ese lo analiza y devuelve la propiedad string que almacena el string acortado o el string completo dependiendo del resultado de la funcion
+
+Si el string tiene mas de 170 caracteres, lo corta y nos devuelve un atributo donde nos dice si necesitamos agregar un boton de "ver mas" o no ponerlo

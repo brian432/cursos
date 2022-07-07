@@ -1,0 +1,21 @@
+Pasar una fecha en numeros y obtener el dia el mes y el año en letras:
+
+Obtener Dias:
+
+1)Creamos una variable y almacenamos los dias en una matriz:
+
+const dias=["Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"];
+
+2)Creamos la funcion que retornara el dia indicado:
+
+function returnDay(dias){
+        let day=new Date("2021-12-22").getDay(); a)
+        console.log(dias[day]); b)
+}
+
+returnDay(dias);
+
+a)new Date() devuelve todos los datos de la fecha pasada como argument, y getDay() devuelve el numero del dia. Comenzando con el lunes como dia "1" y asi sucesivamente hasta llegar hasta el domingo "7"
+----------------------------------------------------------------------------------------------------------------------
+
+ 
