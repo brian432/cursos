@@ -1,0 +1,119 @@
+Este ejemplo esta sacado de la aplicacion "goscrum" dentro de la carpeta "certificacion alkemy"
+
+Tenemos una aplicacion de tareas que tiene un componente tareas.
+
+Dentro de este componente tenemos peticiones a una api "get request", que nos traeran la informacion del usuario legeado, con esta informacion actualizaremos los estados de la aplicacion. Estas peticiones fetch, y todas las actualizaciones del estado las vamos a trasladar al un store de redux. Primero mostraremos la como actualizamos el estado sin redux y luego con redux.
+
+
+1)Sin redux
+	
+export const Tasks = () => {
+
+    const [list, setList] = useState(null)
+    const [renderList, setRenderList] = useState(null)
+
+    useEffect(() => {
+        fetch('END POINT'}`, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + localStorage.getItem("token")
+            },
+
+        })
+            .then((response) => response.json())
+            .then(data => {
+                setRenderList(data.result)
+                setList(data.result)
+            })
+    }, [])
+
+	Cuando se monta el componente, useEffect llama a fetch que hace la peticion get y actualiza el 	estado
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+2)Con redux
+
+	a)Creamos los action correspondientes en un archivo aparte y guardado en su carpeta 	   correspondiente	
+
+export const tasksSucces = (data) =>({
+    type: "TASKS_SUCCESS",
+    payload: data
+})
+export const tasksFailure = (error) =>({
+    type: "TASKS_FAILURE",
+    payload: error
+})
+	
+
+export const getTasks = () => dispatch => { 
+    fetch(`END POINT`, {
+        headers: { 
+            'Content-type': 'applicaction/json', 
+            Autorization: "Bearer " + localStorage.getItem("token")
+        }
+    }).then(response=>response.json())
+    .then(data=>{dispatch(tasksSucces(data.result))})
+    .catch(error=>{dispatch(tasksFailure(error))})
+}
+
+
+getTasks()=Cuando se llame a esta accion en el componente tasks, se producira una peticion a la api, si la peticion funciona, se enviara una accion al reducer correspondiente con la informacion obtenida de la peticion
+
+	then(data=>{dispatch(tasksSuccess(data.result))})= dispatch llama a la accion tasksSucces y la 	envia al store para que el store la conecte con el reducer
+
+Si la peticcion no funciona se enviara otra accion al reducer con la informacion del error de la peticion
+
+	.catch(error=>{dispatch(tasksFailure(error))}) = dispatch llama a la accion tasksFailure y la envia 		 al store para que el store la conecte con el reducer
+
+------------------------
+
+	b)Luego en el reducer veremos el return del nuevo estado.
+
+const initialState = {
+    tasks: [],
+    error: []
+}
+
+export const tasksReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case 'TASKS_SUCCESS':
+            return {
+                ...state,
+                tasks: action.payload,
+                error:[]
+            }
+        case 'TASKS_FAILURE':
+            return {
+                error:action.payload,
+                tasks:[]
+            }
+        default:
+            return state
+    }
+}
+
+
+tasksReducer = recordemos que un reducer recibe un estado incial y una accion, y luego devuelve el nuevo estado.
+
+
+------------------------
+
+	c)En el paso "1" vimos como esta el componente sin redux, ahora veremos ese componente con 	                  redux
+
+import { tasksReducer } from "../../../store/reducers/tasksReducer"
+import { getTasks } from "../../../store/actions/tasksActions"
+
+export const Tasks = () => {
+     
+    const state = useSelector(state=>state.tasksReducer)
+    const dispatch=useDispatch()
+
+    useEffect(() => {
+        dispatch(getTasks())
+    }, [])
+
+.....
+
+Cuando se monte el componente, useEffect llamara al dispatch, este enviara la accion getTasks() al store y el store conectara la accion con el reducer.
+
+dentro de la constante "state" tendremos la informacion obtenida del fetch para luego mapear y renderizar el componente	

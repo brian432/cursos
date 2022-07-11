@@ -1,0 +1,18 @@
+Que es un testing unitario?
+
+Un testing unitario se encarga de comprobar el funcionamiento de una pieza de codigo especifica de manera aislada. No testeamos toda la aplicacion, sino un componente especifico o solo una funcion
+
+Para hacer testing en react, se utiliza una libreria llamada "jest" que ya viene instalada por defector dentro de las dependencias que instala "create react-app"
+
+----------------------------------------------------------
+
+Pasos a seguir para hacer un testing unitario.
+
+1)Creamos un archivo dentro de la carpeta del componente con el nombre del componente seguido de .test.jsx Ejemplo:
+
+	login.test.jsx
+
+2)importamos el componente a testear
+
+3)
+

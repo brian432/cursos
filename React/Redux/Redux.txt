@@ -1,5 +1,19 @@
 Redux.
 
+instalacion e importacion
+
+yarn add redux
+yarn add react-redux
+yarn add redux-thunk //manejar logica dentro de las acciones de redux algo que en redux basico no se pued
+yarn add -D @redux-devtools/extension //sirve para la herramienta "redux" en el inspector del navegador
+
+redux-thunk: Los thunks son el middleware recomendado para la lógica básica de efectos secundarios de Redux, incluida la lógica síncrona compleja que necesita acceso a la tienda y la lógica asincrónica simple como las solicitudes AJAX.
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
 Reducer
 
 1)Reducer es una funcion que recibe 2 parametros, el estado actual y una accion, y el retorno de esta funcion es el nuevo estado. Ejemplo:
@@ -10,7 +24,7 @@ Reducer
 
 Action:
 
-1)Las acciones son objetos que almacenan un evento. La accion le dice al reducer como tiene que actualizar el estado
+1)Las acciones son objetos que almacenan un evento. La accion le dice al reducer como tiene que actualizar el estado.Dentro de las actions puede ir desde un simple contador actualizador hasta peticiones fetch o axios
 
 	const action ={
 		type:'@reducer/incremented' 
@@ -66,7 +80,182 @@ Una vez creado el store que va a almacenar el reducer, pasado la accion mediante
 		console.log(store.getState())
 	})
 
+------------------------------------------------------------------------------------------------------------------------------------------------
 
+Los anteriores fueron ejemplos basicos para que entendamos como funciona redux, en resumen:
+
+1)Reducers: van a ser los encargados de recibir el estado y una accion, y a partir de esa accion, devolver el nuevo esta, pero sin mutar el mismo. 
+
+2)Actions:  Son objetos que almacenan un evento/accion. La accion le dice al reducer como tiene que actualizar el estado
+
+3)store: La Store es un objeto que reune las actions y los reducers
+
+4)dispatch: Es el metodo encargado de enviarle las Actions al store
+
+5)subscribe: Es el metodo encargado de realizar algo que indiquemos dentro de su return, cada vez que en el store se realiza una actualizacion
+
+6)getState: Es el metodo encargado de obtener el estado actual del store
+
+
+---------
+
+Ahora vamos a empezar con ejemplos mas complejos
+
+En el ejemplo anterior utilizamo un numero como estado, ese numero lo ibamos actualizando con las actions, pero el estado puede ser un numero, un array, un objeto, un string o un boleano. En los casos mas comunes, el estado ser un array vacio, dentro iremos introduciendo objetos, la sintaxis para este ejemplo es la siguiente:
+
+ const reducer = (state = [], action)=>{
+	....//recordar aqui, nunca debemos mutar el state original, siempre devolver uno nuevo
+	return state
+ }
+
+const action = {
+	type:"action uno",
+	payload:{ 
+		content: "hola como estan",
+		important: false,
+		id: 1
+	} // en el caso de que las acciones sean un objeto, el contenido del objeto debe ir en esta 				propiedad (payload o el nombre que queramos asociar con el componente del que 		proviene el estado)
+}
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Estructurar redux, importaciones y metodos a llamar (pasos a seguir):
+
+1)Crear una carpeta dentro de src llamada "store", dentro de esa carpeta creamos 2 carpetas mas que se van a llamar reducers y actions
+
+2)Dentro de la carpeta reducers, vamos a almacenar todos los reducers que vamos creando y tambien vamos a crear un rootReducer.js que va a importar a todos los reducers creados, (es como App.js que almacena todos los componentes)
+
+3)En rootReducer vamos a hacer los siguiente:
+    
+    a)Vamos a importar lo siguiente: 
+
+	import { combineReducers } from 'redux' : Es la funcion que nos va a permitir agrupar todos los 					reducers
 	
+	import { reducer1 } from '...' : Importamos los reducers
+		
+    b)Vamos a crear la funcion rootReducer:
+
+	const rootReducer = combineReducers({reducer1, reducer2, ...}) //ingresamos los reducers	
+
+    c) luego exportamos por default el combinado de reducers:
+
+	export default rootReducer
+
+---------
+
+4)Dentro de la carpeta store, al nivel de las carpetas reducers y actions, vamos a crear el store.js. En el mismo crearemos el store.
+
+    a)importamos los siguiente:
 	
+	import { applyMiddleware, createStore } from "redux": 
+		
+		applyMiddleware= necesario para agregar los middleWares como "thunk"
+		createStore= funcion que crea el store
+	
+	import thunk from "redux-thunk"
+
+		thunk: necesario para trabajar con funciones asincronicas dentro de las acciones
+
+	import { composeWithDevTools } from "@redux-devtools/extension"
+
+		composeWithDevTools: sirve para utilizar la extension redux en el inspector del 				     navegador
+	
+	import rootReducer from "./reducers/rootReducer": importamos el rootReducer sin {} porque lo 					              exportamos por default
+   
+    
+    b)Creamos el store:
+	
+	export const store = createStore(
+		rootReducer, 
+    		composeWithDevTools(applyMiddleware(thunk))
+	)
+	
+
+5)Ahora vamos hasta el index.js y hacemos lo siguiente
+
+    a)importamos lo siguiente: 
+	
+	import {Provider} from 'react-redux' 
+
+		Provider = el encargador de conectar el store de redux con la aplicacion react
+
+	import { store } from 'store/store.js'
+
+    b)Envolvemos el componente <App /> con el componente <Provider></Provider> y le pasamos la prop            store
+
+	<Provider store={store}>
+        		<App />
+      	</Provider>
+
+
+6)Ahora vamos a empezar a crear las acciones dentro de la carpeta action. Los nombres de los archivos de las acciones tienen que estar relacionados con el componente que los va a utilizar. Si el componente se llama tasks.js el archivo se tiene que llamar tasksActions.js, dentro de este archivo vamos a crear y exportar todas las acciones relacionadas al componente tasks.sj:
+
+    a)Creamos las acciones:
+
+	export const actionUno = () =>{
+		type:'@notes/created',
+		payload:{
+			content:'Hola como estas',
+			important:false,
+			id:1
+		}
+	}
+
+	export const actionDos = () =>{
+		type:'@notes/created2',
+		payload:{
+			content:'chau hasta luego',
+			important:true,
+			id:2
+		}
+	}
+
+7)Ahora debemos ir al componente donde vamos a actualizar el estado del store, desde ese componente vamos a enviarle las acciones al store para que las junte con los reducers, recordemos que un reducer necesita el estado actual y una accion para devolver el nuevo esta, hasta ahora solo tiene el estado inicial, a partir de aqui le enviaremos la accion que actualizara el estado.
+
+    a)importamos useSelector y useDispatch
+
+	import { useSelector, useDispatch } from "react-redux"
+
+		useSelectot() = Va a ser el hook que traiga el estado desde la store
+		useDispatch() = Va a ser el hook que enviara la accion al reducer
+	
+    b)Importamos la accion dentro del componente
+		
+	import { actionUno } from "./store/action/actionUno"
+
+    c)Creamos las variables que van a almacenar a los hooks
+
+	const state = useSelector(state => state.reducer1)
+
+		Asignamos a la constante "state" el retorno del reducer1 que es el state actual
+	
+	const dispatch=useDispatch()
+
+
+    d)Ahora podremos acceder al estado actual de la aplicacion para mapear y tambien podremos enviar y           tambien podremos enviarle actualizaciones mediante dispatch() dentro de useEffect o alguna funcion.
+
+	useEffect(()=>{
+		dispatch(actionUno)
+	},[])
+
+		Cuando se monte el componente, useEffect llamara al dispatch(), el dispatch() enviara                                   la accion al store, y el store se la enviara al reducer, y el reducer aplicara la                                   actualizacion correspondiente en el estado
+
+    e)Explicacion final:
+
+	Haciendo una pequeña analogia para terminar de entenderlo con el siguiente ejemplo:
+
+		const [state, setState] = useState()
+
+			state = "const state = useSelector(state => state.reducer1)"
+			seState = "const dispatch=useDispatch()"
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Eliminar estados con redux:
 
